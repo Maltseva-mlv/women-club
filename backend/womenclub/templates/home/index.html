@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<div>
+    {% if user.is_authenticated %}
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Выход</button>
+    </form>
+	{% else %}
+		<a href="{% url 'login' %}" > Вход</a> | 
+        <a href="{% url 'register' %}" > Регистрация</a>
+	{% endif %}
+    <div class="container">
+
+        <!-- Header -->
+        <header class="header">
+            {% block header %}{% endblock %}
+        </header>
+
+        <!-- Intro -->
+        <div class="intro">
+            <img src=" {% static './img/intro.png' %} " alt="" class="intro-img">
+
+            <div class="intro__info">
+                <ul class="intro__info--list">
+                    <li class="list__item">формат: закрытый ONLINE-клуб</li>
+                    <li class="list__item">доступ к клубу: от 3 месяцев</li>
+                    <li class="list__item"> женское комьюнитри и поддержка</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="schedule-calendar">
+            <div class="schedule">
+                <p class="schedule__title"> Посмотреть расписание</p>
+
+                <div class="list__months">
+                    <div class="month" data-month="1">
+                        <p class="month__name"></p>
+                        <div class="year"></div>
+                    </div>
+                    <div class="month month-active" data-month="2">
+                        <p class="month__name"></p>
+                        <div class="year year-active">2023</div>
+                    </div>
+                    <div class="month" data-month="3">
+                        <p class="month__name"></p>
+                        <div class="year">2023</div>
+                    </div>
+                    <div class="month" data-month="4">
+                        <p class="month__name"></p>
+                        <div class="year">2023</div>
+                    </div>
+                </div>
+
+                <div class="list-lectures">
+                    <button class="btn-lecture">Смотреть лекцию</button>
+                    <button class="btn-lecture"> Смотреть лекцию </button>
+                    <button class="btn-lecture"> Смотреть лекцию </button>
+                    <button class="btn-help">Чат клуба</button>
+                    <button class="btn-help">Поддержка</button>
+                </div>
+            </div>
+
+            <div class="calendar">
+                <div class="calendar__wrapper">
+                    <h4 class="calendar__month--name"></h4>
+                    <p class="calendar__year"></p>
+                    <div class="calendar__days"></div>
+
+                    <div class="events">
+                        <h3 class="events__title">Ближайшие события</h3>
+
+                        <div class="case__list">
+                            <div class="case">
+                                <div class="case__date">22.10 </div>
+                                <span class="dash">-</span>
+                                <div class="case__text">в 11:00 йога</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="prices">
+            
+            <div class="price__item">
+                <img src=" {% static './img/rate1.png' %} " alt="" class="price__item--img">
+                <img src="{% static './img/rate2.png' %}" alt="" class="price__item--img">
+                <img src="{% static './img/rate3.png' %}" alt="" class="price__item--img">
+            </div>
+
+            <button class="btn-pay">Перейти к оплате</button>
+        </div>
+    </div>  
+</div>
+{% endblock %}
