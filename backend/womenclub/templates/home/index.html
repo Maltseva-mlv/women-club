@@ -75,11 +75,20 @@
                         <h3 class="events__title">Ближайшие события</h3>
 
                         <div class="case__list">
-                            <div class="case">
-                                <div class="case__date">22.10 </div>
-                                <span class="dash">-</span>
-                                <div class="case__text">в 11:00 йога</div>
+                            {% if schedule %}
+                                {% for el in schedule %}
+                                    <div class="case">
+                                            <div class="case__date">
+                                                {{el.date}}   
+                                            </div>    
+                                            <div class="case__text">{{el.subject}}</div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                            <div class="case">   
+                                <div class="case__text">Занятий нет</div>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

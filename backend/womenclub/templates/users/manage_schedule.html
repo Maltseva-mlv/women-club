@@ -4,16 +4,29 @@
 {% block content %}
   <h2>Управление расписанием</h2>
   
-  <form method="post">
+  <form method="post" action="{% url 'manage_schedule' %}">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Добавить расписание</button>
-  </form>
+<!-- 
+    {{ form.date }}
+    {{ form.time }}
+    {{ form.subject }}
+    {{text}} -->
+    {{form.as_p}}
+    <input type="date" placeholder="Введите дату" name="date"/>
+    <input type="time" placeholder="Введите время" name="time"/>
+    <input placeholder="Введите название предмета" name="subject"/>
+
+    <button type="submit">Добавить</button>
+</form>
   
   <h3>Текущее расписание</h3>
   <ul>
-    {% for entry in schedule_entries %}
-      <li>{{ entry.date }} - {{ entry.time }}: {{ entry.subject }}</li>
+    {% for el in schedule %}
+      <div>
+        {{el.date}}
+        {{el.subject}}
+      </div>
+     
     {% endfor %}
   </ul>
 {% endblock %}
