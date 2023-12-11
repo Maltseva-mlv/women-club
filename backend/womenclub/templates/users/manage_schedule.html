@@ -1,0 +1,19 @@
+<!-- users/manage_schedule.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Управление расписанием</h2>
+  
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Добавить расписание</button>
+  </form>
+  
+  <h3>Текущее расписание</h3>
+  <ul>
+    {% for entry in schedule_entries %}
+      <li>{{ entry.date }} - {{ entry.time }}: {{ entry.subject }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

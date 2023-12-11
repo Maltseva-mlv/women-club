@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
 	path('', views.index, name='index'),
     path('users/', include('users.urls')),
+     path('admin/', admin.site.urls),
 ]
 
