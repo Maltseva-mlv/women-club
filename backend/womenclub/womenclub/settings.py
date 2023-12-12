@@ -22,7 +22,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'womenclub',
-	'users'
+	'users',
+	'events',
+	'rest_framework'
 ]
 
 MIDDLEWARE = [

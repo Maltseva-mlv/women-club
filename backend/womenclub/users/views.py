@@ -57,8 +57,8 @@ def add_schedule(request):
 	}
 	return render(request, 'users/manage_schedule.html', data)
 
-def get_events(request):
-	selected_date = request.GET.get('date')
-	events = Schedule.objects.filter(date=selected_date)
-	data = {'events': [{'date': event.date, 'subject': event.subject} for event in events]}
-	return JsonResponse(data)
+# def get_events(request):
+# 	selected_date = request.GET.get('date')
+# 	events = Schedule.objects.filter(date=selected_date)
+# 	data = {'events': [{'date': event.date, 'subject': event.subject} for event in events]}
+# 	return JsonResponse(data)

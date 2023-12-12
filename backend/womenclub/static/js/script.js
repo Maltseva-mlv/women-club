@@ -40,7 +40,9 @@ function createCalendar(elem, year, month){
 		// console.log(d);
 		isToday = new Date().toDateString() === d.toDateString(); 
 
-		table += '<td' + (isToday ? ' class="today"' : '') + '>' + d.getDate() + '</td>';
+		// table += '<td ' + (isToday ? ' class="today"' : '') + '>' + d.getDate() + '</td>';
+		table += '<td data-date="' + year + '-' + (mon + 1) + '-' + d.getDate() + '"' + (isToday ? ' class="today"' : '') + '>' + d.getDate() + '</td>';
+
 
 		if (getDay(d) % 7 == 6){
 			table += '</tr><tr>'
@@ -145,12 +147,61 @@ listMonths.forEach(monthElement => {
 	   .catch(error => console.error('Error:', error));
  }  
 
- const calendarDays = document.querySelector('.calendar__days');
- calendarDays.addEventListener('click', function(e) {
-	console.log(e.target);
-	// if (event.target.classList.contains('calendar__table')){
-	// 	console.log(e.target);
-	// } 
+ const calendarTable = document.querySelector('.calendar__table');
+
+calendarTable.addEventListener('click', function(e) {
+    // Проверяем, что клик был по ячейке календаря
+    if (e.target.tagName === 'TD' && e.target.dataset.date) {
+        const selectedDate = e.target.dataset.date;
+		console.log(selectedDate);
+        // Вызываем функцию для загрузки расписания
+        loadEvents(selectedDate);
+    }
+});
+
+function loadEvents(selectedDate) {
+    const eventList = document.getElementById('eventList');
+
+    fetch(`/api/events/get_events_for_date?date=${selectedDate}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Очищаем список событий
+            eventList.innerHTML = '';
+			console.log(data);
+            // Вставляем новые события в список
+            if (data.events && data.events.length > 0) {
+				console.log(data, 'fy');
+                data.events.forEach(event => {
+                    const caseItem = document.createElement('div');
+                    caseItem.classList.add('case');
+                    caseItem.innerHTML = `
+                        <div class="case__date">${event.date}</div>
+                        <div class="case__text">${event.subject}</div>
+                    `;
+                    eventList.appendChild(caseItem);
+                });
+            } else {
+                // Выводим сообщение, если нет событий
+                const noEventsItem = document.createElement('div');
+                noEventsItem.classList.add('case');
+                noEventsItem.innerHTML = `<div class="case__text">Занятий нет</div>`;
+                eventList.appendChild(noEventsItem);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+//  const calendarDays = document.querySelector('.calendar__days');
+//  calendarDays.addEventListener('click', function(e) {
+// 	console.log(e.target);
+// 	if (e.target.classList.contains('calendar__table')){
+// 		console.log(e.target);
+// 	} 
 	// Получаем ссылки на нужные элементы
 		// const calendarDays = document.getElementById('calendarDays');
 
@@ -165,4 +216,4 @@ listMonths.forEach(monthElement => {
 		// 	loadEvents(selectedDate);
 		// }
 		// });
- });
+//  });
