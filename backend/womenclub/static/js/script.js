@@ -11,10 +11,6 @@ const monthNames = [
   'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
 ];
 
-
-const weekdays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-
-
 function createCalendar(elem, year, month){
 	elem = document.querySelector(elem);
 	let mon = month - 1;
@@ -102,6 +98,7 @@ listMonths.forEach((monthElement, index) => {
 });
 listMonths.forEach(monthElement => {
 	monthElement.addEventListener('click', () => {
+		console.log('клик');
 	  // Удаление класса month-active и year-active у всех месяцев
 	  listMonths.forEach(el => {
 		el.classList.remove('month-active');
@@ -117,3 +114,55 @@ listMonths.forEach(monthElement => {
 	});
   });
   
+  function loadEvents(selectedDate) {
+	const eventList = document.getElementById('eventList');
+
+	fetch(`/api/events/?date=${selectedDate}`)
+	   .then(response => response.json())
+	   .then(data => {
+		  // Очищаем список событий
+		  eventList.innerHTML = '';
+
+		  // Вставляем новые события в список
+		  if (data.events.length > 0) {
+			 data.events.forEach(event => {
+				const caseItem = document.createElement('div');
+				caseItem.classList.add('case');
+				caseItem.innerHTML = `
+				   <div class="case__date">${event.date}</div>
+				   <div class="case__text">${event.subject}</div>
+				`;
+				eventList.appendChild(caseItem);
+			 });
+		  } else {
+			 // Выводим сообщение, если нет событий
+			 const noEventsItem = document.createElement('div');
+			 noEventsItem.classList.add('case');
+			 noEventsItem.innerHTML = `<div class="case__text">Занятий нет</div>`;
+			 eventList.appendChild(noEventsItem);
+		  }
+	   })
+	   .catch(error => console.error('Error:', error));
+ }  
+
+ const calendarDays = document.querySelector('.calendar__days');
+ calendarDays.addEventListener('click', function(e) {
+	console.log(e.target);
+	// if (event.target.classList.contains('calendar__table')){
+	// 	console.log(e.target);
+	// } 
+	// Получаем ссылки на нужные элементы
+		// const calendarDays = document.getElementById('calendarDays');
+
+		// // Назначаем обработчик клика на дни календаря
+		// calendarDays.addEventListener('click', function(event) {
+		// // Проверяем, что клик был по дню календаря
+		// if (event.target.classList.contains('calendar__table')) {
+		// 	// Получаем дату из дня календаря
+		// 	const selectedDate = event.target.dataset.date;
+
+		// 	// Вызываем функцию для загрузки событий
+		// 	loadEvents(selectedDate);
+		// }
+		// });
+ });

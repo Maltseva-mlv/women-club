@@ -69,12 +69,12 @@
                 <div class="calendar__wrapper">
                     <h4 class="calendar__month--name"></h4>
                     <p class="calendar__year"></p>
-                    <div class="calendar__days"></div>
+                    <div class="calendar__days" id="calendarDays"></div>
 
                     <div class="events">
                         <h3 class="events__title">Ближайшие события</h3>
 
-                        <div class="case__list">
+                        <div class="case__list" id="eventList">
                             {% if schedule %}
                                 {% for el in schedule %}
                                     <div class="case">
