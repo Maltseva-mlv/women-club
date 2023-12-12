@@ -4,14 +4,8 @@
 {% block content %}
   <h2>Управление расписанием</h2>
   
-  <form method="post" action="{% url 'manage_schedule' %}">
+  <form method="post" action="{% url 'add_schedule' %}">
     {% csrf_token %}
-<!-- 
-    {{ form.date }}
-    {{ form.time }}
-    {{ form.subject }}
-    {{text}} -->
-    {{form.as_p}}
     <input type="date" placeholder="Введите дату" name="date"/>
     <input type="time" placeholder="Введите время" name="time"/>
     <input placeholder="Введите название предмета" name="subject"/>

@@ -7,5 +7,5 @@ urlpatterns = [
 	path('register/', Register.as_view(), name='register'),
 	path('profile/', profile, name='profile'),
 	path('schedule/', views.manage_schedule, name='manage_schedule'),
-	# path('addschedule/', views.add_schedule, name='addschedule')
+	 path('add_schedule/', views.add_schedule, name='add_schedule'),
 ]

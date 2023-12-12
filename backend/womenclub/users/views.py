@@ -46,7 +46,7 @@ def add_schedule(request):
 		if form.is_valid():
 			print(form.cleaned_data)
 			form.save()
-			return redirect('schedule/')
+			return redirect('manage_schedule')
 		else:
 			error = 'Неверно'
 
@@ -55,4 +55,4 @@ def add_schedule(request):
 		'form': form,
 		'error': error
 	}
-	return render(request, 'users/profile.html', data)
+	return render(request, 'users/manage_schedule.html', data)
