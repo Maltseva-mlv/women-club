@@ -27,7 +27,7 @@ def profile(request):
 	return render(request, 'users/profile.html')
 
 def manage_schedule(request):
-	schedule = Schedule.objects.order_by('date')
+	schedule = Schedule.objects.order_by('-date')
 	return render(request, 'users/manage_schedule.html', {'schedule': schedule})
 	
 def add_schedule(request):

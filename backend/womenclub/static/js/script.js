@@ -37,10 +37,8 @@ function createCalendar(elem, year, month){
 
 	while(d.getMonth() == mon){
 
-		// console.log(d);
 		isToday = new Date().toDateString() === d.toDateString(); 
 
-		// table += '<td ' + (isToday ? ' class="today"' : '') + '>' + d.getDate() + '</td>';
 		table += '<td data-date="' + year + '-' + (mon + 1) + '-' + d.getDate() + '"' + (isToday ? ' class="today"' : '') + '>' + d.getDate() + '</td>';
 
 
@@ -102,8 +100,7 @@ listMonths.forEach((monthElement, index) => {
 listMonths.forEach(monthElement => {
 	monthElement.addEventListener('click', () => {
 		console.log('клик');
-	  // Удаление класса month-active и year-active у всех месяцев
-	  listMonths.forEach(el => {
+	  	listMonths.forEach(el => {
 		el.classList.remove('month-active');
 		el.querySelector('.year').classList.remove('year-active');
 	  });
@@ -121,14 +118,58 @@ listMonths.forEach(monthElement => {
 const calendarTable = document.querySelector('.calendar__table');
 
 calendarTable.addEventListener('click', function(e) {
-    // Проверяем, что клик был по ячейке календаря
     if (e.target.tagName === 'TD' && e.target.dataset.date) {
         const selectedDate = e.target.dataset.date;
-		console.log(selectedDate);
-        // Вызываем функцию для загрузки расписания
+
+		document.querySelectorAll('.calendar__table td').forEach(td => {
+            td.classList.remove('selected-date');
+        });
+		e.target.classList.add('selected-date');
+		
         loadEvents(selectedDate);
     }
 });
+
+function loadEventsToday(){
+	const eventList = document.getElementById('eventList');
+	const currentDate = new Date();
+    const dateToLoad = currentDate.toISOString().split('T')[0]; // Получаем дату в формате "гггг-мм-дд"
+
+	fetch(`/api/events/get_events_for_date?date=${dateToLoad}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            eventList.innerHTML = '';
+            if (data.events && data.events.length > 0) {
+                data.events.forEach(event => {
+					const formattedDate = new Date(event.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'numeric'});
+					const formattedTime = event.time.split(':').slice(0, 2).join(':');
+                    const caseItem = document.createElement('div');
+
+                    caseItem.classList.add('case');
+                    caseItem.innerHTML = `
+                        <div class="case__date">${formattedDate}</div>
+						<span> — в </span>
+						<div class="case__time">${formattedTime}</div>
+                        <div class="case__text">${event.subject}</div>
+                    `;
+                    eventList.appendChild(caseItem);
+                });
+            } else {
+                const noEventsItem = document.createElement('div');
+                noEventsItem.classList.add('case');
+                noEventsItem.innerHTML = `<div class="case__text">Занятий нет</div>`;
+                eventList.appendChild(noEventsItem);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+loadEventsToday()
 
 function loadEvents(selectedDate) {
     const eventList = document.getElementById('eventList');
@@ -143,23 +184,23 @@ function loadEvents(selectedDate) {
             return response.json();
         })
         .then(data => {
-            // Очищаем список событий
             eventList.innerHTML = '';
-			console.log(data);
-            // Вставляем новые события в список
             if (data.events && data.events.length > 0) {
-				console.log(data, 'fy');
                 data.events.forEach(event => {
+					const formattedDate = new Date(event.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'numeric'});
+					const formattedTime = event.time.split(':').slice(0, 2).join(':');
+
                     const caseItem = document.createElement('div');
                     caseItem.classList.add('case');
                     caseItem.innerHTML = `
-                        <div class="case__date">${event.date}</div>
+                        <div class="case__date">${formattedDate}</div>
+						<span> — в </span>
+						<div class="case__time">${formattedTime}</div>
                         <div class="case__text">${event.subject}</div>
                     `;
                     eventList.appendChild(caseItem);
                 });
             } else {
-                // Выводим сообщение, если нет событий
                 const noEventsItem = document.createElement('div');
                 noEventsItem.classList.add('case');
                 noEventsItem.innerHTML = `<div class="case__text">Занятий нет</div>`;
@@ -169,24 +210,3 @@ function loadEvents(selectedDate) {
         .catch(error => console.error('Error:', error));
 }
 
-//  const calendarDays = document.querySelector('.calendar__days');
-//  calendarDays.addEventListener('click', function(e) {
-// 	console.log(e.target);
-// 	if (e.target.classList.contains('calendar__table')){
-// 		console.log(e.target);
-// 	} 
-	// Получаем ссылки на нужные элементы
-		// const calendarDays = document.getElementById('calendarDays');
-
-		// // Назначаем обработчик клика на дни календаря
-		// calendarDays.addEventListener('click', function(event) {
-		// // Проверяем, что клик был по дню календаря
-		// if (event.target.classList.contains('calendar__table')) {
-		// 	// Получаем дату из дня календаря
-		// 	const selectedDate = event.target.dataset.date;
-
-		// 	// Вызываем функцию для загрузки событий
-		// 	loadEvents(selectedDate);
-		// }
-		// });
-//  });

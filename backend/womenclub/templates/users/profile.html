@@ -7,8 +7,23 @@
 <h2 class="profile__area">Личный кабинет {{ user.username }}</h2>
 
 <div class="actions"> 
-    <a href="{% url 'users/manage_schedule'% }">Добавить расписание </a>
-    <button type="submit">Зарегистрировать пользователя</button>
+    <!-- <a href="{% url 'users/manage_schedule'% }">Добавить расписание </a>
+    <button type="submit">Зарегистрировать пользователя</button> -->
+    {% if user.is_superuser %}
+    <div class="add__schedule">
+
+        <h2>Добавить занятие</h2>
+  
+        <form method="post" action="{% url 'add_schedule' %}" class="schedule__form">
+          {% csrf_token %}
+          <input type="date" placeholder="Введите дату" name="date" class="date__input"/>
+          <input type="time" placeholder="Введите время" name="time" class="date__time"/>
+          <input placeholder="Введите название предмета" name="subject" class="date__subject"/>
+      
+          <button type="submit" class="btn--subject">Добавить</button>
+      </form>
+    </div>
+    {% endif %}ol  
 </div>
 
     {% comment %} <h2>Регистрация пользователя администратором</h2>

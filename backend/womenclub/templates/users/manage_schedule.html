@@ -2,25 +2,53 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Расписание занятий</h2>
-  
-  <form method="post" action="{% url 'add_schedule' %}">
-    {% csrf_token %}
-    <input type="date" placeholder="Введите дату" name="date"/>
-    <input type="time" placeholder="Введите время" name="time"/>
-    <input placeholder="Введите название предмета" name="subject"/>
+  <div class="schedule__container">
 
-    <button type="submit">Добавить</button>
-</form>
+    {% if user.is_superuser %}
+    <div class="add__schedule">
+
+        <h3>Добавить занятие</h3>
   
-  <h3>Текущее расписание</h3>
-  <ul>
-    {% for el in schedule %}
-      <div>
-        {{el.date}}
-        {{el.subject}}
-      </div>
-     
-    {% endfor %}
-  </ul>
+        <form method="post" action="{% url 'add_schedule' %}" class="schedule__form">
+          {% csrf_token %}
+          <input type="date" placeholder="Введите дату" name="date" class="date__input"/>
+          <input type="time" placeholder="Введите время" name="time" class="date__time"/>
+          <input placeholder="Введите название предмета" name="subject" class="date__subject"/>
+      
+          <button type="submit" class="btn--subject">Добавить</button>
+      </form>
+    </div>
+    {% endif %}
+
+    <div class="current__schedule">
+        <h3>Текущее расписание</h3>
+        <div class="schedule__table">
+            <div class="schedule__table--title">
+                <div class="schedule--name">Дата</div>
+                <div class="schedule--name">Время</div>
+                <div class="schedule--name">Предмет</div>
+            </div>
+
+            {% for el in schedule %}
+            <div class="schedule__table--wrapper">
+                
+                    <div class="schedule--name">{{el.date}}</div>
+                    <div class="schedule--name">{{el.time}}</div>
+                    <div class="schedule--name">{{el.subject}}</div>
+               
+            </div>
+            {% endfor %}
+        </div>
+        <ul>
+          <!-- {% for el in schedule %}
+            <div>
+              {{el.date}}
+              {{el.subject}}
+            </div>
+           
+          {% endfor %} -->
+        </ul>
+    </div>
+  </div>
+  
 {% endblock %}
