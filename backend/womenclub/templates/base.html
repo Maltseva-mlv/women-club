@@ -18,9 +18,11 @@
 	<header class="header">
 		{% include 'includes/header.html' %}
 	</header>
-	{% block content %}
+	<div class="container">
+		{% block content %}
 
-	{% endblock %}
+		{% endblock %}
+	</div>
 
 	<script src=" {% static './js/script.js' %}"></script>
 </body>

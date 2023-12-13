@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Управление расписанием</h2>
+  <h2>Расписание занятий</h2>
   
   <form method="post" action="{% url 'add_schedule' %}">
     {% csrf_token %}

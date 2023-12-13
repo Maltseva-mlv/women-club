@@ -4,16 +4,6 @@
 
 {% load static %}
 <div>
-    {% if user.is_authenticated %}
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Выход</button>
-    </form>
-	{% else %}
-		<a href="{% url 'login' %}" > Вход</a> | 
-        {% comment %} <a href="{% url 'register' %}" > Регистрация</a> {% endcomment %}
-	{% endif %}
-    <div class="container">
 
         <!-- Header -->
         <header class="header">
@@ -106,6 +96,5 @@
 
             <button class="btn-pay">Перейти к оплате</button>
         </div>
-    </div>  
 </div>
 {% endblock %}

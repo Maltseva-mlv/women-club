@@ -4,17 +4,17 @@
 
 {% load static %}
 
-<h2>Личный кабинет пользователя</h2>
-    <p>Привет, {{ user.username }}!</p>
-    <p>Биография: {{ user.profile.bio }}</p>
-    {% if user.profile.avatar %}
-        <img src="{{ user.profile.avatar.url }}" alt="Аватар">
-    {% endif %}
+<h2 class="profile__area">Личный кабинет {{ user.username }}</h2>
 
-    <h2>Регистрация пользователя администратором</h2>
+<div class="actions"> 
+    <a href="{% url 'users/manage_schedule'% }">Добавить расписание </a>
+    <button type="submit">Зарегистрировать пользователя</button>
+</div>
+
+    {% comment %} <h2>Регистрация пользователя администратором</h2>
         <form method="post" action="">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Зарегистрировать пользователя</button>
-        </form>
+        </form> {% endcomment %}
 {% endblock %}
