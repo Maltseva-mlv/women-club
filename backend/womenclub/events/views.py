@@ -16,7 +16,7 @@ class ScheduleApi(viewsets.ModelViewSet):
         if selected_date:
             events = Schedule.objects.filter(date=selected_date)
         else:
-            events = self.queryset  # Если дата не выбрана, возвращаем все события
-
+            events = self.queryset  
+            
         serializer = EventSerializer(events, many=True)
         return Response({'events': serializer.data})

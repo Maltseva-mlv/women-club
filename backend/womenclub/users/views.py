@@ -4,30 +4,24 @@ from django.shortcuts import render, redirect
 from .models import Schedule
 from .forms import ScheduleForm
 from users.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import user_passes_test
 
-class Register(View):
-	template_name = 'registration/register.html'
+User = get_user_model()
 
-	def get(self, request):
-		context = {
-			'form': UserCreationForm()
-		}
-		return render(request, self.template_name, context)
-	
-	def post(self, request):
-		form = UserCreationForm(request.POST)
+@user_passes_test(lambda u: u.is_superuser)
+def admin_register_user(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            return redirect('profile')  
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
 
-		if form.is_valid():
-			form.save()
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password1')
-			user = authenticate(username=username, password=password)
-			login(request, user)
-			return redirect('/')
-		context = {
-			'form': form
-		}
-		return render(request, self.template_name, context)
 
 def profile(request):
 	return render(request, 'users/profile.html')
@@ -56,9 +50,3 @@ def add_schedule(request):
 		'error': error
 	}
 	return render(request, 'users/manage_schedule.html', data)
-
-# def get_events(request):
-# 	selected_date = request.GET.get('date')
-# 	events = Schedule.objects.filter(date=selected_date)
-# 	data = {'events': [{'date': event.date, 'subject': event.subject} for event in events]}
-# 	return JsonResponse(data)

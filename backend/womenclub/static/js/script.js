@@ -98,6 +98,7 @@ listMonths.forEach((monthElement, index) => {
 	monthElement.querySelector('.month__name').textContent = monthNames[month - 1];
 	monthElement.querySelector('.year').textContent = year;
 });
+
 listMonths.forEach(monthElement => {
 	monthElement.addEventListener('click', () => {
 		console.log('клик');
@@ -116,38 +117,8 @@ listMonths.forEach(monthElement => {
 	});
   });
   
-  function loadEvents(selectedDate) {
-	const eventList = document.getElementById('eventList');
 
-	fetch(`/api/events/?date=${selectedDate}`)
-	   .then(response => response.json())
-	   .then(data => {
-		  // Очищаем список событий
-		  eventList.innerHTML = '';
-
-		  // Вставляем новые события в список
-		  if (data.events.length > 0) {
-			 data.events.forEach(event => {
-				const caseItem = document.createElement('div');
-				caseItem.classList.add('case');
-				caseItem.innerHTML = `
-				   <div class="case__date">${event.date}</div>
-				   <div class="case__text">${event.subject}</div>
-				`;
-				eventList.appendChild(caseItem);
-			 });
-		  } else {
-			 // Выводим сообщение, если нет событий
-			 const noEventsItem = document.createElement('div');
-			 noEventsItem.classList.add('case');
-			 noEventsItem.innerHTML = `<div class="case__text">Занятий нет</div>`;
-			 eventList.appendChild(noEventsItem);
-		  }
-	   })
-	   .catch(error => console.error('Error:', error));
- }  
-
- const calendarTable = document.querySelector('.calendar__table');
+const calendarTable = document.querySelector('.calendar__table');
 
 calendarTable.addEventListener('click', function(e) {
     // Проверяем, что клик был по ячейке календаря
@@ -161,8 +132,10 @@ calendarTable.addEventListener('click', function(e) {
 
 function loadEvents(selectedDate) {
     const eventList = document.getElementById('eventList');
-
-    fetch(`/api/events/get_events_for_date?date=${selectedDate}`)
+	const currentDate = new Date();
+    const dateToLoad = selectedDate || currentDate.toISOString().split('T')[0]; // Получаем дату в формате "гггг-мм-дд"
+	console.log(dateToLoad, 'dateToLoad');
+    fetch(`/api/events/get_events_for_date?date=${dateToLoad}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');

@@ -11,9 +11,10 @@
         <img src="{{ user.profile.avatar.url }}" alt="Аватар">
     {% endif %}
 
-    <!-- <div>
-        <h3>Добавление расписания</h3>
-
-
-    </div> -->
+    <h2>Регистрация пользователя администратором</h2>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Зарегистрировать пользователя</button>
+        </form>
 {% endblock %}
