@@ -210,3 +210,34 @@ function loadEvents(selectedDate) {
         .catch(error => console.error('Error:', error));
 }
 
+function loadLectures(){
+	const eventList = document.getElementById('lecture__table--wrapper');
+	console.log(eventList);
+	fetch(`/api/lectures/`)
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+		.then(data => {
+			console.log(data)
+			// eventList.innerHTML = '';
+			if (data.events && data.events.length > 0) {
+                data.events.forEach(event => {
+					
+                    caseItem.innerHTML = `
+						<div class="lecture--name">${event.lecture_name}</div>
+						<div class="lecture--name">${event.link}</div>
+                    `;
+                    eventList.appendChild(caseItem);
+                });
+            } else {
+                console.log('error');
+            }
+
+		})
+		.catch(error => console.error('Error:', error));
+}
+
+loadLectures();

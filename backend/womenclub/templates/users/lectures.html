@@ -2,28 +2,47 @@
 
 {% block content %}
 
-<h3>Лекции</h3>
-
-{% if user.is_superuser %}
+<div class="schedule__container">
+	{% if user.is_superuser %}
     <div class="add__schedule">
 
         <h3>Добавить лекцию</h3>
   
-        <form method="post" action="{% url 'add_lecture' %}" class="schedule__form">
+        <form method="post" action="{% url 'show_lectures' %}" class="schedule__form">
           {% csrf_token %}
           <input type="text" placeholder="Название лекции" name="lecture_name"/>
           <input type="" placeholder="Ссылка на лекцию" name="link" class=""/>
          
-          <select name="schedule">
-            {% for schedule in form.fields.schedule.queryset %}
-                <option value="{{ schedule.pk }}">{{ schedule.subject }}</option>
-            {% endfor %}
-        </select>
+		  <select name="schedule">
+			{% for subject in unique_subjects %}
+				<option value="{{ subject.subject }}">{{ subject.subject }}</option>
+			{% endfor %}
+		</select>
         
           <span>{{error}}</span>
           <button type="submit" class="btn--subject">Добавить</button>
       </form>
     </div>
     {% endif %}
+
+	<div class="current__schedule">
+        <h3>Лекции</h3>
+        <div class="lecture__table">
+            <div class="schedule__table--title">
+                <div class="lecture--name">Название лекции</div>
+                <div class="lecture--name">Ссылка</div>
+            </div>
+        </div>
+
+		{% for el in lecture %}
+            <div class="schedule__table--wrapper">
+                
+                <div class="lecture--name">{{el.lecture_name}}</div>
+                <div class="lecture--name">{{el.link}}</div>               
+            </div>
+            {% endfor %}
+	</div>
+
+</div>
 
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.views import View
 from django.shortcuts import render, redirect
-from .models import Schedule
+from .models import Schedule, Lecture
 from .forms import ScheduleForm, LectureForm
 from users.forms import UserCreationForm
 from django.contrib.auth import get_user_model
@@ -51,11 +51,9 @@ def add_schedule(request):
 	}
 	return render(request, 'users/manage_schedule.html', data)
 
-def show_lectures(request):
-	return render(request, 'users/lectures.html')
-
 def add_lecture(request):
 	print(Schedule.objects.all())
+	lecture = Lecture.objects.all()
 	form = LectureForm()
 
 	error = ''
@@ -70,8 +68,12 @@ def add_lecture(request):
 		else:
 			error = 'Неверно'
 
+	unique_subjects = Schedule.objects.values('subject').distinct()
 	data = {
-		'form': form,
-		'error': error
-	}
-	return render(request, 'users/lectures.html')
+        'form': form,
+        'error': error,
+        'unique_subjects': unique_subjects,
+		'lecture': lecture
+    }
+
+	return render(request, 'users/lectures.html', data)

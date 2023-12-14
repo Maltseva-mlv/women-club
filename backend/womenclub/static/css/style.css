@@ -382,6 +382,10 @@ td:hover{
     text-transform: uppercase;
     color: #fff;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     cursor: pointer;
 }
 
@@ -621,4 +625,12 @@ td:hover{
 .schedule__table--wrapper{
     display: flex;
     text-align: center;
+}
+
+.lecture__table{
+    width: 100%;
+}
+.lecture--name{
+    width: 50%;
+    padding: 10px;
 }
