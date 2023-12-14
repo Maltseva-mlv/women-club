@@ -2,9 +2,9 @@
 {% if user.is_authenticated %}
 	<nav class="header__nav">
 		<a href="{% url 'index' %}" class="nav__link">Главная</a>
-		<a href="" class="nav__link">Лекции</a>
+		<a href="{% url 'show_lectures' %}" class="nav__link">Лекции</a>
 		<a href="" class="nav__link">Тарифы</a>
-			<a href="" class="nav__link">Расписание</a>
+		<a href="{% url 'manage_schedule' %}" class="nav__link">Расписание</a>
 		<a href="" class="nav__link">Поддержка</a>
 		<a href="" class="nav__link">О клубе</a>
 		<a href="{% url 'profile' %}" class="nav__link">Профиль</a>

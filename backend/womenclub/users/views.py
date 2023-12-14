@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.views import View
 from django.shortcuts import render, redirect
 from .models import Schedule
-from .forms import ScheduleForm
+from .forms import ScheduleForm, LectureForm
 from users.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import user_passes_test
@@ -50,3 +50,28 @@ def add_schedule(request):
 		'error': error
 	}
 	return render(request, 'users/manage_schedule.html', data)
+
+def show_lectures(request):
+	return render(request, 'users/lectures.html')
+
+def add_lecture(request):
+	print(Schedule.objects.all())
+	form = LectureForm()
+
+	error = ''
+	form = LectureForm()
+	
+	if request.method == 'POST':
+		form = LectureForm(request.POST)
+		if form.is_valid():
+			print(form.cleaned_data)
+			form.save()
+			return redirect('show_lectures')
+		else:
+			error = 'Неверно'
+
+	data = {
+		'form': form,
+		'error': error
+	}
+	return render(request, 'users/lectures.html')

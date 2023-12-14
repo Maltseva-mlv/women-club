@@ -4,4 +4,26 @@
 
 <h3>Лекции</h3>
 
+{% if user.is_superuser %}
+    <div class="add__schedule">
+
+        <h3>Добавить лекцию</h3>
+  
+        <form method="post" action="{% url 'add_lecture' %}" class="schedule__form">
+          {% csrf_token %}
+          <input type="text" placeholder="Название лекции" name="lecture_name"/>
+          <input type="" placeholder="Ссылка на лекцию" name="link" class=""/>
+         
+          <select name="schedule">
+            {% for schedule in form.fields.schedule.queryset %}
+                <option value="{{ schedule.pk }}">{{ schedule.subject }}</option>
+            {% endfor %}
+        </select>
+        
+          <span>{{error}}</span>
+          <button type="submit" class="btn--subject">Добавить</button>
+      </form>
+    </div>
+    {% endif %}
+
 {% endblock %}

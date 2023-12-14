@@ -13,3 +13,15 @@ class Schedule(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Расписание'
+
+class Lecture(models.Model):
+	lecture_name = models.CharField('Название лекции', max_length=100)
+	link = models.URLField('Ссылка на лекцию')
+	schedule = models.ForeignKey('Schedule', on_delete = models.CASCADE) 
+
+	def __str__(self):
+		return self.lecture_name
+	
+	class Meta:
+		verbose_name = 'Лекция'
+		verbose_name_plural = 'Лекции'
