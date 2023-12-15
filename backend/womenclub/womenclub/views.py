@@ -10,3 +10,7 @@ def index(request):
 
 	return render(request, 'home/index.html', context)
 
+def about(request):
+	
+	return render(request, 'about/main.html')
+

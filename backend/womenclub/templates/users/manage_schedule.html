@@ -7,7 +7,7 @@
     {% if user.is_superuser %}
     <div class="add__schedule">
 
-        <h3>Добавить занятие</h3>
+        <h3 id="add">Добавить занятие</h3>
   
         <form method="post" action="{% url 'add_schedule' %}" class="schedule__form">
           {% csrf_token %}
@@ -30,7 +30,7 @@
             </div>
 
             {% for el in schedule %}
-            <div class="schedule__table--wrapper">
+            <div class="lecture__table--wrapper">
                 
                     <div class="schedule--name">{{el.date}}</div>
                     <div class="schedule--name">{{el.time}}</div>
@@ -40,14 +40,6 @@
             {% endfor %}
         </div>
         <ul>
-          <!-- {% for el in schedule %}
-            <div>
-              {{el.date}}
-              {{el.subject}}
-            </div>
-           
-          {% endfor %} -->
-        </ul>
     </div>
   </div>
   

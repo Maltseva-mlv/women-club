@@ -3,6 +3,7 @@ const calendarDaysContainer  = document.querySelectorAll('.calendar__days');
 const weekDaysContainer = document.querySelectorAll('.weekdays');
 const yearName = document.querySelectorAll('.calendar__year');
 const listMonths = document.querySelectorAll('.list__months .month');
+const burger = document.querySelectorAll('.burger');
 
 const currentDate = new Date();
 const monthNames = [
@@ -10,6 +11,27 @@ const monthNames = [
   'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
   'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
 ];
+
+document.addEventListener('DOMContentLoaded', function () {
+	var navMenu = document.querySelector('.header__nav');
+	var burgerIcon = document.querySelector('.burger');
+	var add = document.getElementById('add');
+	var lecture = document.querySelector('.schedule__form');
+
+	burgerIcon.addEventListener('click', function () {
+		navMenu.classList.toggle('nav-visible');
+	});
+
+	add.addEventListener('click', function () {
+
+		if (lecture.style.display == 'block'){
+			lecture.style.display = 'none'
+		} else {
+			lecture.style.display = 'block'
+		}
+		
+	});
+});
 
 function createCalendar(elem, year, month){
 	elem = document.querySelector(elem);

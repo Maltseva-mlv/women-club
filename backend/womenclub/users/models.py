@@ -9,7 +9,7 @@ class Schedule(models.Model):
 	date = models.DateField()
 	time = models.TimeField()
 	def __str__(self):
-		return f"{self.date} - {self.time.strftime('%d-%m-%Y')} {self.subject}"
+		return f"{self.date.strftime('%d.%m.%y')} - {self.time.strftime('%d-%m-%Y')} {self.subject}"
 
 	class Meta:
 		verbose_name_plural = 'Расписание'

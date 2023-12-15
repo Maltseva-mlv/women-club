@@ -15,9 +15,11 @@ a{
 }
 
 .container{
-    max-width: 100%;
-    width: 1274px;
+    max-width: 1274px;
+    width: 100%;
     margin: 0 auto;
+
+    padding: 0 20px;
 }
 
 /* *** Header *** */
@@ -26,9 +28,33 @@ a{
     display: flex;
 }
 
+.header__container{
+    max-width: 1380px;
+    width: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
 .header__nav{
     width: 100%;
     display: flex;
+}
+
+.header__nav.nav-visible {
+    display: flex;
+    width: 200px;
+    border-radius: 5px;
+    background: #BCBCBC;
+    flex-direction: column;
+    padding: 5px 10px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 3;
 }
 .nav__link{
     font-family: 'Mulish', sans-serif;
@@ -39,6 +65,11 @@ a{
     margin-right: 50px;
 }
 
+.burger{
+    width: 35px;
+    height: 35px;
+    display: none;
+}
 /* *** Auth *** */
 
 
@@ -122,7 +153,13 @@ a{
     font-family: 'Mulish', sans-serif;
     font-weight: 400;
     font-size: 24px;
-    color: #363636;
+    color: #fff;
+
+    padding: 10px 30px;
+    border-radius: 5px;
+    background: #cf7b3e;
+    margin: 15px 0;
+    display: inline-block;
 }
 
 .btn--logout{
@@ -142,16 +179,69 @@ a{
 
     cursor: pointer;
     transition: .3s linear;
+
 }
+
 .btn--logout:hover{
     background: #cf7b3e;
 }
 
+.btn--logout img{
+    display: none;
+}
 /* *** Intro *** */
 
-.intro-img{
+.intro__wrapper{
+    max-width: 1274px;
     width: 100%;
     height: 345px;
+    position: relative;
+    margin: auto;
+}
+.intro__about{
+    max-width: 1274px;
+    width: 100%;
+    height: 237px;
+    position: relative;
+    margin: auto;
+}
+.intro-img{
+    width: 100%;
+}
+
+.intro__wrapper--text,
+.intro__about--text{
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: #fff;
+}
+
+.intro__wrapper--text h4{
+    font-family: 'Cormorant SC', serif;
+    font-weight: 500;
+    font-size: 74px;
+
+    text-transform: uppercase;
+}
+.intro__about--text h4{
+    font-family: 'Cormorant SC', serif;
+    font-weight: 500;
+    font-size: 60px;
+
+    text-transform: uppercase;
+}
+
+.intro__wrapper--text p{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 32px;
+
+    text-align: center;
 }
 
 .intro__info{
@@ -182,10 +272,41 @@ a{
     color: #363636;
 }
 
+/* Profile */
+.actions{
+    width: 250px;
+}
+
+.profile__form{
+    display: flex;
+    flex-direction: column;
+}
+.profile__form input{
+    height: 30px;
+    border-radius: 5px;
+    padding: 0 10px;
+
+    margin-bottom: 20px;
+}
+
+.btn--user{
+    width: 100%;
+    padding: 10px 3px;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    background: #F38536;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: .3s linear;
+}
 /* Schedule and calendar */
 
 .schedule-calendar{
-    width: 1070px;
+    max-width: 1070px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 
@@ -250,7 +371,8 @@ a{
 }
 
 .calendar__wrapper{
-    width: 441px;
+    max-width: 441px;
+    width: 100%;
     height: 651px;
     background: #393939;
     border-radius: 5px;
@@ -334,7 +456,7 @@ td:hover{
 
 .case{
     width: 95%;
-    height: 35px;
+    height: 40px;
     border: 1px solid #FE8E05;
     border-radius: 30px;
 
@@ -428,13 +550,69 @@ td:hover{
     display: flex;
     justify-content: space-between;
 }
-.price__item--img{
-    width: 406px;
+
+.price__item--block{
+    max-width: 406px;
+    width: 100%;
     height: 269px;
+    border-radius: 23px;
+
+    position: relative;
+}
+.price__item--inner{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.price__item--inner h5{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    text-align: center;
+    color: #fff;  
+
+    text-transform: uppercase;
+
+    @media(max-width: 1090px){
+        font-size: 28px;
+    }
+}
+
+.price__item--inner div{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    color: #F38536;
+    text-align: center;
+}
+
+.price__item--img{
+    width: 100%;
+    height: 269px;
+    border-radius: 23px;
+}
+
+.overlay{
+    width: 100%;
+    /* height: 269px; */
+    background: rgba(0, 0, 0, .4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+
+    border-radius: 23px;
 }
 
 .btn-pay{
-    width: 486px;
+    max-width: 486px ;
+    width: 100%;
     height: 69px;
 
     display: flex;
@@ -471,7 +649,8 @@ td:hover{
 }
 
 .forWhom{
-    width: 700px;
+    max-width:700px ;
+    width: 100%;
     margin: 20px auto;
 }
 
@@ -490,7 +669,8 @@ td:hover{
 }
 
 .ul--for{
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
     margin: 15px auto;
     display: flex;
     flex-direction: column;
@@ -499,6 +679,7 @@ td:hover{
     font-family: 'Mulish', sans-serif;
     font-weight: 400;
     font-size: 26px;
+    padding: 0 20px;
 }
 
 .for__item{
@@ -508,7 +689,8 @@ td:hover{
 /* *** Links pages *** */
 
 .links__pages{
-    width: 1000px;
+    max-width: 1000px;
+    width: 100%;
     margin: 15px auto;
     display: flex;
     flex-direction: column;
@@ -588,6 +770,7 @@ td:hover{
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
+    justify-content: space-between;
     margin-top: 30px;
 }
 
@@ -605,7 +788,8 @@ td:hover{
 }
 
 .schedule__table{
-    width: 600px;
+    max-width: 600px;
+    width: 100%;
     margin-top: 50px;
 }
 
@@ -622,15 +806,353 @@ td:hover{
     text-align: center;
 }
 
-.schedule__table--wrapper{
+.schedule__table--wrapper,
+.lecture__table--wrapper{
     display: flex;
     text-align: center;
 }
 
 .lecture__table{
     width: 100%;
+    margin-top: 50px;
 }
 .lecture--name{
     width: 50%;
     padding: 10px;
+}
+
+.lecture--input{
+    height: 30px;
+    width: 100%;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.lecture--select{
+    width: 100%;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+@media(max-width: 1270px){
+
+    .header__nav{
+        display: none;
+    }
+
+    .nav__link{
+        margin-bottom: 7px;
+    }
+    .btn--logout{
+        width: 35px;
+        height: 35px;
+        background: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 3;
+    }
+    .btn--logout img{
+        display: block;
+    }
+    .btn--logout span{
+        display: none;
+    }
+
+    .burger{
+        display: block;
+    }
+    .intro__wrapper{
+        height: auto;
+    }
+
+    .intro__about{
+        height: auto;
+    }
+
+}
+
+@media(max-width: 1150px){
+
+    .price__item--inner h5 {
+        font-size: 30px; 
+    }
+    .price__item--inner div {
+        font-size: 44px;
+    }
+
+}
+
+@media(max-width: 1025px){
+
+    .prices{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .price__item{
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .price__item--block{
+        
+        margin-bottom: 30px;
+    }
+
+    .intro__about--text h4{
+        font-size: 54px;
+    }
+}
+
+
+@media(max-width: 930px){
+    .schedule__container{
+        flex-direction: column;
+    }
+
+    .schedule-calendar {
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+    }
+    .schedule, .calendar {
+        margin: 20px 35px;
+    }
+
+    .add__schedule{
+        width: 100%;
+    }
+
+    .schedule__form{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .lecture--input,
+    .lecture--select{
+        margin-right: 20px;
+    }
+
+    .current__schedule{
+        width: 100%;
+    }
+    .current__schedule h3{
+        display: none;
+    }
+}
+
+@media(max-width: 850px){
+
+    .intro__wrapper--text h4 {
+        font-size: 50px;
+    }
+    .price__item--inner h5 {
+        font-size: 30px; 
+    }
+    .price__item--inner div {
+        font-size: 44px;
+    }
+
+    .intro__about--text h4{
+        font-size: 46px;
+    }
+}
+
+@media(max-width: 750px){
+    .intro__wrapper--text h4 {
+        font-size: 44px;
+    }
+
+    .price__item--inner h5 {
+        font-size: 30px; 
+    }
+    .price__item--inner div {
+        font-size: 44px;
+    }
+    
+    .intro__about--text h4{
+        font-size: 40px;
+    }
+
+    .slogan{
+        font-size: 28px;
+    }
+
+    .text{
+        font-size: 26px;
+    }
+
+    .btn--for{
+        font-size: 42px;
+    }
+
+    .lecture--name:last-child{
+        display: none;
+    }
+}
+
+@media(max-width: 715px){
+    .nav__link{
+        font-size: 20px;
+    }
+    .schedule, .calendar{
+        width: 100%;
+    }
+    .intro__info--list{
+        display: none;
+    }
+    .schedule__title{
+        font-size: 22px;
+    }
+
+    .events__title{
+        font-size: 24px;
+    }
+    .month{
+        width: 70px;
+        height: 70px;
+    }
+
+    .year{
+        font-size: 33px;
+    }
+
+    .add__schedule h3{
+        display: block;
+        background: #F38536;
+        color: #fff;
+        width: 200px;
+        height: 30px;
+
+        border-radius: 5px;
+        text-align: center;
+    }
+    .schedule__form{
+        width: 300px;
+        /* display: flex; */
+        flex-direction: column;
+        justify-content: space-between;
+        display: none;
+    }
+}
+
+
+@media(max-width: 690px){
+    .intro__about--text h4{
+        font-size: 32px;
+    }
+}
+
+@media(max-width: 555px){
+ 
+    .intro__wrapper--text h4{
+        font-size: 40px;
+    }
+    .month:last-child {
+        display: none;
+    }
+    .btn-help{
+        font-size: 30px;
+    }
+    .case{
+        font-size: 14px;
+    }
+
+    .intro__about--text h4{
+        font-size: 28px;
+    }
+
+    .slogan {
+        font-size: 24px;
+    }
+
+    .text {
+        font-size: 20px;
+    }
+
+    .btn--for {
+        font-size: 38px;
+    }
+    .ul--for{
+        font-size: 20px;
+    }
+
+    .for__item{
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width: 475px){
+ 
+    .intro__about--text h4{
+        font-size: 22px;
+    }
+
+    .slogan {
+        font-size: 20px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+
+    .btn--for {
+        font-size: 32px;
+    }
+    .ul--for{
+        font-size: 16px;
+    }
+
+    .schedule__table--title{
+        display: none;
+    }
+
+    .schedule__table--wrapper{
+        flex-direction: column;
+        border-bottom: 1px solid #000;
+    }
+    .lecture__table--wrapper{
+        flex-direction: row;
+        border-bottom: 1px solid #000;
+    }
+    .lecture--name{
+        width: 100%;
+    }
+
+    .date__subject{
+        width: 100%;
+    }
+}
+
+@media(max-width: 400px){
+    .intro__wrapper--text h4{
+        font-size: 30px;
+    }
+
+    .intro__wrapper--text p{
+        font-size: 22px;
+    }
+
+    .intro__about--text h4{
+        font-size: 20px;
+    }
+
+    .slogan {
+        font-size: 16px;
+    }
+
+
+    .btn--for {
+        font-size: 26px;
+    }
+    .ul--for{
+        font-size: 16px;
+    }
 }

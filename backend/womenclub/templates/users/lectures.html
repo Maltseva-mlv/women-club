@@ -6,14 +6,14 @@
 	{% if user.is_superuser %}
     <div class="add__schedule">
 
-        <h3>Добавить лекцию</h3>
+        <h3 id="add">Добавить лекцию</h3>
   
         <form method="post" action="{% url 'show_lectures' %}" class="schedule__form">
           {% csrf_token %}
-          <input type="text" placeholder="Название лекции" name="lecture_name"/>
-          <input type="" placeholder="Ссылка на лекцию" name="link" class=""/>
+          <input type="text" placeholder="Название лекции" name="lecture_name" class="lecture--input" />
+          <input type="" placeholder="Ссылка на лекцию" name="link" class="lecture--input"/>
          
-		  <select name="schedule">
+		  <select name="schedule" class="lecture--select">
 			{% for subject in unique_subjects %}
 				<option value="{{ subject.subject }}">{{ subject.subject }}</option>
 			{% endfor %}
@@ -23,25 +23,49 @@
           <button type="submit" class="btn--subject">Добавить</button>
       </form>
     </div>
-    {% endif %}
 
-	<div class="current__schedule">
+    <div class="current__schedule">
         <h3>Лекции</h3>
         <div class="lecture__table">
             <div class="schedule__table--title">
                 <div class="lecture--name">Название лекции</div>
                 <div class="lecture--name">Ссылка</div>
+                <div class="lecture--name">Категория</div>
             </div>
         </div>
 
-		{% for el in lecture %}
+        {% for el in lecture %}
             <div class="schedule__table--wrapper">
                 
                 <div class="lecture--name">{{el.lecture_name}}</div>
-                <div class="lecture--name">{{el.link}}</div>               
+                <a href="{{el.link}}" target="_blank" class="lecture--name">{{el.link}}</a>
+                <div class="lecture--name">{{el.schedule}}</div>                  
             </div>
             {% endfor %}
-	</div>
+    </div>
+    {% else  %}
+        <div class="current__schedule" style="width: 100%;">
+            <h3>Лекции</h3>
+            <div class="lecture__table">
+                <div class="schedule__table--title">
+                    <div class="lecture--name">Название лекции</div>
+                    <div class="lecture--name">Ссылка</div>
+                    <div class="lecture--name">Категория</div>
+                </div>
+            </div>
+
+            {% for el in lecture %}
+                <div class="schedule__table--wrapper">
+                    
+                    <div class="lecture--name">{{el.lecture_name}}</div>
+                    <a href="{{el.link}}" target="_blank" class="lecture--name">{{el.link}}</a>
+                    <div class="lecture--name">{{el.schedule}}</div>                  
+                </div>
+                {% endfor %}
+        </div>
+    {% endif %}
+
+
 
 </div>
 

@@ -1,35 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 {% load static %}
 
 <h2 class="profile__area">Личный кабинет {{ user.username }}</h2>
 
 <div class="actions"> 
-    <!-- <a href="{% url 'users/manage_schedule'% }">Добавить расписание </a>
-    <button type="submit">Зарегистрировать пользователя</button> -->
     {% if user.is_superuser %}
-    <div class="add__schedule">
 
-        <h2>Добавить занятие</h2>
-  
-        <form method="post" action="{% url 'add_schedule' %}" class="schedule__form">
-          {% csrf_token %}
-          <input type="date" placeholder="Введите дату" name="date" class="date__input"/>
-          <input type="time" placeholder="Введите время" name="time" class="date__time"/>
-          <input placeholder="Введите название предмета" name="subject" class="date__subject"/>
-      
-          <button type="submit" class="btn--subject">Добавить</button>
-      </form>
-    </div>
-    {% endif %}ol  
-</div>
+    <h3>Зарегистрировать пользователя</h3>
+        {% if form.errors %}
+            <p>{{ form.errors }}</p>
+        {% endif %}
 
-    {% comment %} <h2>Регистрация пользователя администратором</h2>
-        <form method="post" action="">
+        {% if messages %}
+            {% for message in messages %}
+                <p class="success">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post" action="{% url 'profile' %}" class="profile__form">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Зарегистрировать пользователя</button>
-        </form> {% endcomment %}
+            
+            <label for="id_username">Логин:</label>
+            {{ form.username }}
+              
+            <label for="id_password1">Пароль:</label>
+            {{ form.password1 }}
+            
+            <label for="id_password2">Повторите пароль:</label>
+            {{ form.password2 }}
+            <button type="submit" class="btn--user">Зарегистрировать пользователя</button>
+        </form>
+    {% else %}
+        <p>У вас нет прав для просмотра этой страницы.</p>
+    {% endif %}
+</div>
 {% endblock %}

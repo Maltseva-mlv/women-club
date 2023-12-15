@@ -12,7 +12,15 @@
 
         <!-- Intro -->
         <div class="intro">
-            <img src=" {% static './img/intro.png' %} " alt="" class="intro-img">
+            <div class="intro__wrapper">
+                <img src=" {% static './img/intro.png' %} " alt="" class="intro-img">
+                <div class="intro__wrapper--text">
+                    <h4>Женский клуб</h4>
+                    <p>by love and feel</p>
+                </div>
+
+            </div>
+            
 
             <div class="intro__info">
                 <ul class="intro__info--list">
@@ -86,9 +94,31 @@
         <div class="prices">
             
             <div class="price__item">
-                <img src=" {% static './img/rate1.png' %} " alt="" class="price__item--img">
-                <img src="{% static './img/rate2.png' %}" alt="" class="price__item--img">
-                <img src="{% static './img/rate3.png' %}" alt="" class="price__item--img">
+                <div class="price__item--block">
+                    <img src=" {% static './img/rate1.png' %} " alt="" class="price__item--img">
+                    <div class="price__item--inner">
+                        <h5>Апргрейд до VIP</h5>
+                        <div>100 000₽</div>
+                    </div>
+                    
+                    <div class="overlay"></div>
+                </div>
+                <div class="price__item--block">
+                    <img src=" {% static './img/rate2.png' %} " alt="" class="price__item--img">
+                    <div class="price__item--inner">
+                        <h5>Тариф standart</h5>
+                        <div>55 000₽</div>
+                    </div>
+                    <div class="overlay"></div>
+                </div>
+                <div class="price__item--block">
+                    <img src=" {% static './img/rate3.png' %} " alt="" class="price__item--img">
+                    <div class="price__item--inner">
+                        <h5>тариф VIP</h5>
+                        <div>155 000₽</div>
+                    </div>
+                    <div class="overlay"></div>
+                </div>
             </div>
 
             <button class="btn-pay">Перейти к оплате</button>

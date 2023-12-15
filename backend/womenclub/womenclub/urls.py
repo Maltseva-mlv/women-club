@@ -12,9 +12,8 @@ router.register(r'api/lectures', LectureApi, basename='lecture')
 urlpatterns = [
 	path('', views.index, name='index'),
     path('users/', include('users.urls')),
+	path('about/',  views.about, name='about'),
     path('admin/', admin.site.urls),
-	# path('api/events/', ScheduleApi.as_view({'get': 'list'}), name='event-list'),  # Добавлен этот путь
-    # path('api/events/<str:date>/', get_events_for_date, name='get_events_for_date'),
     path('', include(router.urls)),
 ]
 

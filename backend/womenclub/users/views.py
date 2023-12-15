@@ -6,6 +6,7 @@ from .forms import ScheduleForm, LectureForm
 from users.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib import messages
 
 User = get_user_model()
 
@@ -17,10 +18,11 @@ def admin_register_user(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
+            messages.success(request, f'Пользователь {username} добавлен успешно!')
             return redirect('profile')  
     else:
         form = UserCreationForm()
-    return render(request, 'registration/register.html', {'form': form})
+    return render(request, 'users/profile.html', {'form': form})
 
 
 def profile(request):
