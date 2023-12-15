@@ -3,6 +3,7 @@ const calendarDaysContainer  = document.querySelectorAll('.calendar__days');
 const weekDaysContainer = document.querySelectorAll('.weekdays');
 const yearName = document.querySelectorAll('.calendar__year');
 const listMonths = document.querySelectorAll('.list__months .month');
+const burger = document.querySelectorAll('.burger');
 
 const currentDate = new Date();
 const monthNames = [
@@ -11,9 +12,26 @@ const monthNames = [
   'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
 ];
 
+document.addEventListener('DOMContentLoaded', function () {
+	var navMenu = document.querySelector('.header__nav');
+	var burgerIcon = document.querySelector('.burger');
+	var add = document.getElementById('add');
+	var lecture = document.querySelector('.schedule__form');
 
-const weekdays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+	burgerIcon.addEventListener('click', function () {
+		navMenu.classList.toggle('nav-visible');
+	});
 
+	add.addEventListener('click', function () {
+
+		if (lecture.style.display == 'block'){
+			lecture.style.display = 'none'
+		} else {
+			lecture.style.display = 'block'
+		}
+		
+	});
+});
 
 function createCalendar(elem, year, month){
 	elem = document.querySelector(elem);
@@ -41,10 +59,10 @@ function createCalendar(elem, year, month){
 
 	while(d.getMonth() == mon){
 
-		// console.log(d);
 		isToday = new Date().toDateString() === d.toDateString(); 
 
-		table += '<td' + (isToday ? ' class="today"' : '') + '>' + d.getDate() + '</td>';
+		table += '<td data-date="' + year + '-' + (mon + 1) + '-' + d.getDate() + '"' + (isToday ? ' class="today"' : '') + '>' + d.getDate() + '</td>';
+
 
 		if (getDay(d) % 7 == 6){
 			table += '</tr><tr>'
@@ -100,10 +118,11 @@ listMonths.forEach((monthElement, index) => {
 	monthElement.querySelector('.month__name').textContent = monthNames[month - 1];
 	monthElement.querySelector('.year').textContent = year;
 });
+
 listMonths.forEach(monthElement => {
 	monthElement.addEventListener('click', () => {
-	  // Удаление класса month-active и year-active у всех месяцев
-	  listMonths.forEach(el => {
+		console.log('клик');
+	  	listMonths.forEach(el => {
 		el.classList.remove('month-active');
 		el.querySelector('.year').classList.remove('year-active');
 	  });
@@ -117,3 +136,130 @@ listMonths.forEach(monthElement => {
 	});
   });
   
+
+const calendarTable = document.querySelector('.calendar__table');
+
+calendarTable.addEventListener('click', function(e) {
+    if (e.target.tagName === 'TD' && e.target.dataset.date) {
+        const selectedDate = e.target.dataset.date;
+
+		document.querySelectorAll('.calendar__table td').forEach(td => {
+            td.classList.remove('selected-date');
+        });
+		e.target.classList.add('selected-date');
+		
+        loadEvents(selectedDate);
+    }
+});
+
+function loadEventsToday(){
+	const eventList = document.getElementById('eventList');
+	const currentDate = new Date();
+    const dateToLoad = currentDate.toISOString().split('T')[0]; // Получаем дату в формате "гггг-мм-дд"
+
+	fetch(`/api/events/get_events_for_date?date=${dateToLoad}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            eventList.innerHTML = '';
+            if (data.events && data.events.length > 0) {
+                data.events.forEach(event => {
+					const formattedDate = new Date(event.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'numeric'});
+					const formattedTime = event.time.split(':').slice(0, 2).join(':');
+                    const caseItem = document.createElement('div');
+
+                    caseItem.classList.add('case');
+                    caseItem.innerHTML = `
+                        <div class="case__date">${formattedDate}</div>
+						<span> — в </span>
+						<div class="case__time">${formattedTime}</div>
+                        <div class="case__text">${event.subject}</div>
+                    `;
+                    eventList.appendChild(caseItem);
+                });
+            } else {
+                const noEventsItem = document.createElement('div');
+                noEventsItem.classList.add('case');
+                noEventsItem.innerHTML = `<div class="case__text">Занятий нет</div>`;
+                eventList.appendChild(noEventsItem);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+loadEventsToday()
+
+function loadEvents(selectedDate) {
+    const eventList = document.getElementById('eventList');
+	const currentDate = new Date();
+    const dateToLoad = selectedDate || currentDate.toISOString().split('T')[0]; // Получаем дату в формате "гггг-мм-дд"
+	console.log(dateToLoad, 'dateToLoad');
+    fetch(`/api/events/get_events_for_date?date=${dateToLoad}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            eventList.innerHTML = '';
+            if (data.events && data.events.length > 0) {
+                data.events.forEach(event => {
+					const formattedDate = new Date(event.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'numeric'});
+					const formattedTime = event.time.split(':').slice(0, 2).join(':');
+
+                    const caseItem = document.createElement('div');
+                    caseItem.classList.add('case');
+                    caseItem.innerHTML = `
+                        <div class="case__date">${formattedDate}</div>
+						<span> — в </span>
+						<div class="case__time">${formattedTime}</div>
+                        <div class="case__text">${event.subject}</div>
+                    `;
+                    eventList.appendChild(caseItem);
+                });
+            } else {
+                const noEventsItem = document.createElement('div');
+                noEventsItem.classList.add('case');
+                noEventsItem.innerHTML = `<div class="case__text">Занятий нет</div>`;
+                eventList.appendChild(noEventsItem);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+function loadLectures(){
+	const eventList = document.getElementById('lecture__table--wrapper');
+	console.log(eventList);
+	fetch(`/api/lectures/`)
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+		.then(data => {
+			console.log(data)
+			// eventList.innerHTML = '';
+			if (data.events && data.events.length > 0) {
+                data.events.forEach(event => {
+					
+                    caseItem.innerHTML = `
+						<div class="lecture--name">${event.lecture_name}</div>
+						<div class="lecture--name">${event.link}</div>
+                    `;
+                    eventList.appendChild(caseItem);
+                });
+            } else {
+                console.log('error');
+            }
+
+		})
+		.catch(error => console.error('Error:', error));
+}
+
+loadLectures();

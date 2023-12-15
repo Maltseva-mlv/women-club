@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body{
@@ -14,33 +15,233 @@ a{
 }
 
 .container{
-    max-width: 100%;
-    width: 1274px;
+    max-width: 1274px;
+    width: 100%;
     margin: 0 auto;
+
+    padding: 0 20px;
 }
 
 /* *** Header *** */
 .header{
     padding: 33px 22px;
+    display: flex;
+}
+
+.header__container{
+    max-width: 1380px;
+    width: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
 }
 
 .header__nav{
-    width: 772px;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
+}
+
+.header__nav.nav-visible {
+    display: flex;
+    width: 200px;
+    border-radius: 5px;
+    background: #BCBCBC;
+    flex-direction: column;
+    padding: 5px 10px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 3;
 }
 .nav__link{
     font-family: 'Mulish', sans-serif;
     font-weight: 400;
     font-size: 24px;
     color: #363636;
+
+    margin-right: 50px;
 }
 
+.burger{
+    width: 35px;
+    height: 35px;
+    display: none;
+}
+/* *** Auth *** */
+
+
+
+.auth{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth__container{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth__title{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+
+    margin-bottom: 20px;
+}
+
+.input__auth{
+    margin: 10px 0;
+}
+
+.input__auth label{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 7px;
+}
+
+.input__auth input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+
+    border-radius: 5px;
+    border: none;
+
+    outline: none;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.btn--auth{
+    width: 100%;
+    padding: 8px;
+
+    background: #F38536;
+    color: #fff;
+
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+    transition: .3s linear;
+
+    margin-top: 10px;
+}
+
+.btn--auth:hover{
+    background: #cf7b3e;
+}
+
+.form__auth{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: #fff;
+
+    padding: 10px 30px;
+    border-radius: 5px;
+    background: #cf7b3e;
+    margin: 15px 0;
+    display: inline-block;
+}
+
+.btn--logout{
+    width: 120px;
+    height: 30px;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+    background: #F38536;
+    color: #fff;
+    border: none;
+
+    cursor: pointer;
+    transition: .3s linear;
+
+}
+
+.btn--logout:hover{
+    background: #cf7b3e;
+}
+
+.btn--logout img{
+    display: none;
+}
 /* *** Intro *** */
 
-.intro-img{
+.intro__wrapper{
+    max-width: 1274px;
     width: 100%;
     height: 345px;
+    position: relative;
+    margin: auto;
+}
+.intro__about{
+    max-width: 1274px;
+    width: 100%;
+    height: 237px;
+    position: relative;
+    margin: auto;
+}
+.intro-img{
+    width: 100%;
+}
+
+.intro__wrapper--text,
+.intro__about--text{
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: #fff;
+}
+
+.intro__wrapper--text h4{
+    font-family: 'Cormorant SC', serif;
+    font-weight: 500;
+    font-size: 74px;
+
+    text-transform: uppercase;
+}
+.intro__about--text h4{
+    font-family: 'Cormorant SC', serif;
+    font-weight: 500;
+    font-size: 60px;
+
+    text-transform: uppercase;
+}
+
+.intro__wrapper--text p{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 32px;
+
+    text-align: center;
 }
 
 .intro__info{
@@ -71,10 +272,41 @@ a{
     color: #363636;
 }
 
+/* Profile */
+.actions{
+    width: 250px;
+}
+
+.profile__form{
+    display: flex;
+    flex-direction: column;
+}
+.profile__form input{
+    height: 30px;
+    border-radius: 5px;
+    padding: 0 10px;
+
+    margin-bottom: 20px;
+}
+
+.btn--user{
+    width: 100%;
+    padding: 10px 3px;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    background: #F38536;
+    color: #fff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: .3s linear;
+}
 /* Schedule and calendar */
 
 .schedule-calendar{
-    width: 1070px;
+    max-width: 1070px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 
@@ -139,7 +371,8 @@ a{
 }
 
 .calendar__wrapper{
-    width: 441px;
+    max-width: 441px;
+    width: 100%;
     height: 651px;
     background: #393939;
     border-radius: 5px;
@@ -180,6 +413,7 @@ th{
     color: #fff; 
     padding: 30px 0;
 }
+
 td{
     font-family: 'Mulish', sans-serif;
     font-weight: 300;
@@ -187,14 +421,16 @@ td{
     text-align: center;
     color: #fff;
     padding: 10px 0;
+
+    cursor: pointer;
+
+    transition: .3s linear;
 }
 
+td:hover{
+    color: #FE8E05;
+}
 .today{
-    /* width: 18px;
-    height: 18px;
-    background: #FE8E05; */
-
-    /* border-radius: 100%; */
     color: #FE8E05;
 }
 
@@ -217,9 +453,10 @@ td{
     flex-direction: column;
 }
 
+
 .case{
     width: 95%;
-    height: 35px;
+    height: 40px;
     border: 1px solid #FE8E05;
     border-radius: 30px;
 
@@ -230,12 +467,20 @@ td{
 
     display: flex;
     align-items: center;
-    margin: 0 auto;
+    margin: 10px auto;
+    padding: 0 20px;
 }
 
+.case__date,
+.case__time, 
 .case__date{
-    padding: 20px;
+    margin: 0 5px;
 }
+
+.selected-date{
+    color: red;
+}
+
 /* *** list-lectures *** */
 .list-lectures{
     display: flex;
@@ -258,6 +503,10 @@ td{
     font-size: 24px;
     text-transform: uppercase;
     color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     cursor: pointer;
 }
@@ -301,13 +550,69 @@ td{
     display: flex;
     justify-content: space-between;
 }
-.price__item--img{
-    width: 406px;
+
+.price__item--block{
+    max-width: 406px;
+    width: 100%;
     height: 269px;
+    border-radius: 23px;
+
+    position: relative;
+}
+.price__item--inner{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.price__item--inner h5{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    text-align: center;
+    color: #fff;  
+
+    text-transform: uppercase;
+
+    @media(max-width: 1090px){
+        font-size: 28px;
+    }
+}
+
+.price__item--inner div{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    color: #F38536;
+    text-align: center;
+}
+
+.price__item--img{
+    width: 100%;
+    height: 269px;
+    border-radius: 23px;
+}
+
+.overlay{
+    width: 100%;
+    /* height: 269px; */
+    background: rgba(0, 0, 0, .4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+
+    border-radius: 23px;
 }
 
 .btn-pay{
-    width: 486px;
+    max-width: 486px ;
+    width: 100%;
     height: 69px;
 
     display: flex;
@@ -344,7 +649,8 @@ td{
 }
 
 .forWhom{
-    width: 700px;
+    max-width:700px ;
+    width: 100%;
     margin: 20px auto;
 }
 
@@ -363,7 +669,8 @@ td{
 }
 
 .ul--for{
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
     margin: 15px auto;
     display: flex;
     flex-direction: column;
@@ -372,6 +679,7 @@ td{
     font-family: 'Mulish', sans-serif;
     font-weight: 400;
     font-size: 26px;
+    padding: 0 20px;
 }
 
 .for__item{
@@ -381,7 +689,8 @@ td{
 /* *** Links pages *** */
 
 .links__pages{
-    width: 1000px;
+    max-width: 1000px;
+    width: 100%;
     margin: 15px auto;
     display: flex;
     flex-direction: column;
@@ -398,4 +707,452 @@ td{
     align-items: center;
     justify-content: center;
     background: #363636;
+}
+
+/* *** Profile *** */
+
+.profile__area{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+
+    margin-bottom: 50px;
+}
+
+/* *** Date *** */
+
+.date__input,
+.date__time,
+.date__subject{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 0 5px;
+
+    height: 30px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+
+    border-radius: 5px;
+}
+.date__input{
+    margin-right: 8px;
+}
+.date__subject{
+    width: 250px;
+}
+
+.btn--subject{
+    width: 100%;
+    height: 30px;
+
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+
+    background: #F38536;
+    color: #fff;
+
+    border-radius: 5px;
+    border: none;
+
+    cursor: pointer;
+    transition: .3s linear;
+}
+
+.btn--subject:hover{
+    background: #cf7b3e;
+}
+
+/* *** Schedule page *** */
+
+.schedule__container{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.add__schedule{
+    width: 20%;
+}
+
+.schedule__form{
+    margin-top: 20px;
+}
+
+.current__schedule{
+    width: 75%;
+    margin-right: 10px;
+}
+
+.schedule__table{
+    max-width: 600px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.schedule--name{
+    width: 33.33333%;
+    padding: 10px;
+}
+
+.schedule__table--title{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    text-align: center;
+}
+
+.schedule__table--wrapper,
+.lecture__table--wrapper{
+    display: flex;
+    text-align: center;
+}
+
+.lecture__table{
+    width: 100%;
+    margin-top: 50px;
+}
+.lecture--name{
+    width: 50%;
+    padding: 10px;
+}
+
+.lecture--input{
+    height: 30px;
+    width: 100%;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.lecture--select{
+    width: 100%;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+@media(max-width: 1270px){
+
+    .header__nav{
+        display: none;
+    }
+
+    .nav__link{
+        margin-bottom: 7px;
+    }
+    .btn--logout{
+        width: 35px;
+        height: 35px;
+        background: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 3;
+    }
+    .btn--logout img{
+        display: block;
+    }
+    .btn--logout span{
+        display: none;
+    }
+
+    .burger{
+        display: block;
+    }
+    .intro__wrapper{
+        height: auto;
+    }
+
+    .intro__about{
+        height: auto;
+    }
+
+}
+
+@media(max-width: 1150px){
+
+    .price__item--inner h5 {
+        font-size: 30px; 
+    }
+    .price__item--inner div {
+        font-size: 44px;
+    }
+
+}
+
+@media(max-width: 1025px){
+
+    .prices{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .price__item{
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .price__item--block{
+        
+        margin-bottom: 30px;
+    }
+
+    .intro__about--text h4{
+        font-size: 54px;
+    }
+}
+
+
+@media(max-width: 930px){
+    .schedule__container{
+        flex-direction: column;
+    }
+
+    .schedule-calendar {
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+    }
+    .schedule, .calendar {
+        margin: 20px 35px;
+    }
+
+    .add__schedule{
+        width: 100%;
+    }
+
+    .schedule__form{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .lecture--input,
+    .lecture--select{
+        margin-right: 20px;
+    }
+
+    .current__schedule{
+        width: 100%;
+    }
+    .current__schedule h3{
+        display: none;
+    }
+}
+
+@media(max-width: 850px){
+
+    .intro__wrapper--text h4 {
+        font-size: 50px;
+    }
+    .price__item--inner h5 {
+        font-size: 30px; 
+    }
+    .price__item--inner div {
+        font-size: 44px;
+    }
+
+    .intro__about--text h4{
+        font-size: 46px;
+    }
+}
+
+@media(max-width: 750px){
+    .intro__wrapper--text h4 {
+        font-size: 44px;
+    }
+
+    .price__item--inner h5 {
+        font-size: 30px; 
+    }
+    .price__item--inner div {
+        font-size: 44px;
+    }
+    
+    .intro__about--text h4{
+        font-size: 40px;
+    }
+
+    .slogan{
+        font-size: 28px;
+    }
+
+    .text{
+        font-size: 26px;
+    }
+
+    .btn--for{
+        font-size: 42px;
+    }
+
+    .lecture--name:last-child{
+        display: none;
+    }
+}
+
+@media(max-width: 715px){
+    .nav__link{
+        font-size: 20px;
+    }
+    .schedule, .calendar{
+        width: 100%;
+    }
+    .intro__info--list{
+        display: none;
+    }
+    .schedule__title{
+        font-size: 22px;
+    }
+
+    .events__title{
+        font-size: 24px;
+    }
+    .month{
+        width: 70px;
+        height: 70px;
+    }
+
+    .year{
+        font-size: 33px;
+    }
+
+    .add__schedule h3{
+        display: block;
+        background: #F38536;
+        color: #fff;
+        width: 200px;
+        height: 30px;
+
+        border-radius: 5px;
+        text-align: center;
+    }
+    .schedule__form{
+        width: 300px;
+        /* display: flex; */
+        flex-direction: column;
+        justify-content: space-between;
+        display: none;
+    }
+}
+
+
+@media(max-width: 690px){
+    .intro__about--text h4{
+        font-size: 32px;
+    }
+}
+
+@media(max-width: 555px){
+ 
+    .intro__wrapper--text h4{
+        font-size: 40px;
+    }
+    .month:last-child {
+        display: none;
+    }
+    .btn-help{
+        font-size: 30px;
+    }
+    .case{
+        font-size: 14px;
+    }
+
+    .intro__about--text h4{
+        font-size: 28px;
+    }
+
+    .slogan {
+        font-size: 24px;
+    }
+
+    .text {
+        font-size: 20px;
+    }
+
+    .btn--for {
+        font-size: 38px;
+    }
+    .ul--for{
+        font-size: 20px;
+    }
+
+    .for__item{
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width: 475px){
+ 
+    .intro__about--text h4{
+        font-size: 22px;
+    }
+
+    .slogan {
+        font-size: 20px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+
+    .btn--for {
+        font-size: 32px;
+    }
+    .ul--for{
+        font-size: 16px;
+    }
+
+    .schedule__table--title{
+        display: none;
+    }
+
+    .schedule__table--wrapper{
+        flex-direction: column;
+        border-bottom: 1px solid #000;
+    }
+    .lecture__table--wrapper{
+        flex-direction: row;
+        border-bottom: 1px solid #000;
+    }
+    .lecture--name{
+        width: 100%;
+    }
+
+    .date__subject{
+        width: 100%;
+    }
+}
+
+@media(max-width: 400px){
+    .intro__wrapper--text h4{
+        font-size: 30px;
+    }
+
+    .intro__wrapper--text p{
+        font-size: 22px;
+    }
+
+    .intro__about--text h4{
+        font-size: 20px;
+    }
+
+    .slogan {
+        font-size: 16px;
+    }
+
+
+    .btn--for {
+        font-size: 26px;
+    }
+    .ul--for{
+        font-size: 16px;
+    }
 }

@@ -1,21 +1,42 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация </title>
+    {% load static %}
 
-{% block content %}
-    <h3>Авторизация</h3>
+    <link rel="stylesheet" href="{%  static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="auth"> 
+            <div class="auth__container">
+                <h3 class="auth__title">Авторизация</h3>
 
-    {% if form.errors %}
-        <p>{{ form.errors }}</p>
-    {% endif %}
+                {% if form.errors %}
+                    <p>{{ form.errors }}</p>
+                {% endif %}
+            
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    
+                    <div class="input__auth">
+                        <label for="id_username">Логин:</label>
+                        {{ form.username }}
+                    </div>
+                    
+                    <div class="input__auth">
+                        <label for="id_password">Пароль:</label>
+                        {{ form.password }}    
+                    </div>
+                   
+                    <button type="submit" class="btn--auth">Войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        
-        <label for="id_username">Логин:</label>
-        {{ form.username }}
-        
-        <label for="id_password">Пароль:</label>
-        {{ form.password }}
-        
-        <button type="submit">Войти</button>
-    </form>
-{% endblock %}
+

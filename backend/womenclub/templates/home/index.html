@@ -4,16 +4,6 @@
 
 {% load static %}
 <div>
-    {% if user.is_authenticated %}
-    <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Выход</button>
-    </form>
-	{% else %}
-		<a href="{% url 'login' %}" > Вход</a> | 
-        <a href="{% url 'register' %}" > Регистрация</a>
-	{% endif %}
-    <div class="container">
 
         <!-- Header -->
         <header class="header">
@@ -22,7 +12,15 @@
 
         <!-- Intro -->
         <div class="intro">
-            <img src=" {% static './img/intro.png' %} " alt="" class="intro-img">
+            <div class="intro__wrapper">
+                <img src=" {% static './img/intro.png' %} " alt="" class="intro-img">
+                <div class="intro__wrapper--text">
+                    <h4>Женский клуб</h4>
+                    <p>by love and feel</p>
+                </div>
+
+            </div>
+            
 
             <div class="intro__info">
                 <ul class="intro__info--list">
@@ -57,9 +55,9 @@
                 </div>
 
                 <div class="list-lectures">
-                    <button class="btn-lecture">Смотреть лекцию</button>
-                    <button class="btn-lecture"> Смотреть лекцию </button>
-                    <button class="btn-lecture"> Смотреть лекцию </button>
+                    <a href="https://youtu.be/nu1wqpB9ZRo" target="_blank" class="btn-lecture">Смотреть лекцию</a>
+                    <a href="https://youtu.be/iOTjekSAEts" target="_blank" class="btn-lecture"> Смотреть лекцию </a>
+                    <a href="https://www.youtube.com/watch?v=KFnxRvOyDRE" target="_blank" class="btn-lecture"> Смотреть лекцию </a>
                     <button class="btn-help">Чат клуба</button>
                     <button class="btn-help">Поддержка</button>
                 </div>
@@ -69,17 +67,23 @@
                 <div class="calendar__wrapper">
                     <h4 class="calendar__month--name"></h4>
                     <p class="calendar__year"></p>
-                    <div class="calendar__days"></div>
+                    <div class="calendar__days" id="calendarDays"></div>
 
                     <div class="events">
                         <h3 class="events__title">Ближайшие события</h3>
 
-                        <div class="case__list">
-                            <div class="case">
-                                <div class="case__date">22.10 </div>
-                                <span class="dash">-</span>
-                                <div class="case__text">в 11:00 йога</div>
+                        <div class="case__list" id="eventList">
+                          
+                                    <div class="case">
+                                            <div class="case__date"></div>    
+                                            <div class="case__time"></div>   
+                                            <div class="case__text"></div>
+                                    </div>
+                             
+                            <div class="case">   
+                                <div class="case__text">Занятий нет</div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -90,13 +94,34 @@
         <div class="prices">
             
             <div class="price__item">
-                <img src=" {% static './img/rate1.png' %} " alt="" class="price__item--img">
-                <img src="{% static './img/rate2.png' %}" alt="" class="price__item--img">
-                <img src="{% static './img/rate3.png' %}" alt="" class="price__item--img">
+                <div class="price__item--block">
+                    <img src=" {% static './img/rate1.png' %} " alt="" class="price__item--img">
+                    <div class="price__item--inner">
+                        <h5>Апргрейд до VIP</h5>
+                        <div>100 000₽</div>
+                    </div>
+                    
+                    <div class="overlay"></div>
+                </div>
+                <div class="price__item--block">
+                    <img src=" {% static './img/rate2.png' %} " alt="" class="price__item--img">
+                    <div class="price__item--inner">
+                        <h5>Тариф standart</h5>
+                        <div>55 000₽</div>
+                    </div>
+                    <div class="overlay"></div>
+                </div>
+                <div class="price__item--block">
+                    <img src=" {% static './img/rate3.png' %} " alt="" class="price__item--img">
+                    <div class="price__item--inner">
+                        <h5>тариф VIP</h5>
+                        <div>155 000₽</div>
+                    </div>
+                    <div class="overlay"></div>
+                </div>
             </div>
 
             <button class="btn-pay">Перейти к оплате</button>
         </div>
-    </div>  
 </div>
 {% endblock %}

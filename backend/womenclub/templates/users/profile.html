@@ -1,13 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 {% load static %}
 
-<h2>Личный кабинет пользователя</h2>
-    <p>Привет, {{ user.username }}!</p>
-    <p>Биография: {{ user.profile.bio }}</p>
-    {% if user.profile.avatar %}
-        <img src="{{ user.profile.avatar.url }}" alt="Аватар">
+<h2 class="profile__area">Личный кабинет {{ user.username }}</h2>
+
+<div class="actions"> 
+    {% if user.is_superuser %}
+
+    <h3>Зарегистрировать пользователя</h3>
+        {% if form.errors %}
+            <p>{{ form.errors }}</p>
+        {% endif %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="success">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post" action="{% url 'profile' %}" class="profile__form">
+            {% csrf_token %}
+            
+            <label for="id_username">Логин:</label>
+            {{ form.username }}
+              
+            <label for="id_password1">Пароль:</label>
+            {{ form.password1 }}
+            
+            <label for="id_password2">Повторите пароль:</label>
+            {{ form.password2 }}
+            <button type="submit" class="btn--user">Зарегистрировать пользователя</button>
+        </form>
+    {% else %}
+        <p>У вас нет прав для просмотра этой страницы.</p>
     {% endif %}
+</div>
 {% endblock %}
