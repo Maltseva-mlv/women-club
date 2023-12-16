@@ -58,8 +58,8 @@
                     <a href="https://youtu.be/nu1wqpB9ZRo" target="_blank" class="btn-lecture">Смотреть лекцию</a>
                     <a href="https://youtu.be/iOTjekSAEts" target="_blank" class="btn-lecture"> Смотреть лекцию </a>
                     <a href="https://www.youtube.com/watch?v=KFnxRvOyDRE" target="_blank" class="btn-lecture"> Смотреть лекцию </a>
-                    <button class="btn-help">Чат клуба</button>
-                    <button class="btn-help">Поддержка</button>
+                    <a href="https://t.me/+OxDBE6dXXvk0ZmEy" target="_blank" class="btn-help">Чат клуба</a>
+                    <a href="https://t.me/+OxDBE6dXXvk0ZmEy" target="_blank" class="btn-help">Поддержка</a>
                 </div>
             </div>
 
@@ -91,37 +91,71 @@
 
         </div>
 
-        <div class="prices">
+        <div class="prices" id="tariffs">
             
             <div class="price__item">
-                <div class="price__item--block">
-                    <img src=" {% static './img/rate1.png' %} " alt="" class="price__item--img">
-                    <div class="price__item--inner">
-                        <h5>Апргрейд до VIP</h5>
-                        <div>100 000₽</div>
+                <div class="price__inner">
+                    <div class="price__item--block">
+                        <img src=" {% static './img/rate1.png' %} " alt="" class="price__item--img">
+                        <div class="price__item--inner">
+                            <h5>Апргрейд до VIP</h5>
+                            <div>100 000₽</div>
+                        </div>
+                        
+                        <div class="overlay"></div>
                     </div>
-                    
-                    <div class="overlay"></div>
-                </div>
-                <div class="price__item--block">
-                    <img src=" {% static './img/rate2.png' %} " alt="" class="price__item--img">
-                    <div class="price__item--inner">
-                        <h5>Тариф standart</h5>
-                        <div>55 000₽</div>
-                    </div>
-                    <div class="overlay"></div>
-                </div>
-                <div class="price__item--block">
-                    <img src=" {% static './img/rate3.png' %} " alt="" class="price__item--img">
-                    <div class="price__item--inner">
-                        <h5>тариф VIP</h5>
-                        <div>155 000₽</div>
-                    </div>
-                    <div class="overlay"></div>
-                </div>
-            </div>
 
-            <button class="btn-pay">Перейти к оплате</button>
+                    <div class="tariff__description">
+                        <ul class="ul__description">
+                            <li >доступ ко всем материалам на 6 месяцев </li>
+                            <li> участие во всех эфирах, лекциях, ивентах, марафонах и войс-чатах с экспертами</li>
+                            <li>первые места на все сторонние мероприятия вне рамок ЖК</li>
+                            <li>постоянный взаимообмен и поддержка в сильном и невероятном комьюнити женщин </li>
+                            <li>чатик ЖК + куратор, который будет отвечать на все вопросы в чате</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="price__inner">
+                    <div class="price__item--block">
+                        <img src=" {% static './img/rate2.png' %} " alt="" class="price__item--img">
+                        <div class="price__item--inner">
+                            <h5>Тариф standart</h5>
+                            <div>55 000₽</div>
+                        </div>
+                        <div class="overlay"></div>
+                    </div>
+                    <div class="tariff__description">
+                        <ul class="ul__description">
+                            <li>всё, что включено в тариф STANDART, но доступ к материалам на год </li>
+                            <li>групповые мастермаинды онлайн и в живую с основателем клуба </li>
+                            <li>женские туры и путешествия по России и зарубеж  </li>
+                            <li>+ живые мероприятия и встречи по городам</li>
+                        </ul>
+                    </div>
+                </div>
+            
+                <div class="price__inner">
+                    <div class="price__item--block">
+                        <img src=" {% static './img/rate3.png' %} " alt="" class="price__item--img">
+                        <div class="price__item--inner">
+                            <h5>тариф VIP</h5>
+                            <div>155 000₽</div>
+                        </div>
+                        <div class="overlay"></div>
+                    </div>
+                    <div class="tariff__description">
+                        <ul class="ul__description">
+                            <li>доступ к материалам с 6 месяцев продлевается на целый год 🤍</li>
+                            <li>+ в подарок зарядка «для раскрытия женственности»</li>
+                        </ul>
+                        
+                    </div>
+                </div>
+             
+            </div>
         </div>
+
+        <button class="btn-pay">Перейти к оплате</button>
 </div>
 {% endblock %}

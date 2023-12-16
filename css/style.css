@@ -71,6 +71,59 @@ a{
     color: #363636;
 }
 
+.intro__wrapper{
+    max-width: 1274px;
+    width: 100%;
+    height: 345px;
+    position: relative;
+    margin: auto;
+}
+.intro__about{
+    max-width: 1274px;
+    width: 100%;
+    height: 237px;
+    position: relative;
+    margin: auto;
+}
+.intro-img{
+    width: 100%;
+}
+
+.intro__wrapper--text,
+.intro__about--text{
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: #fff;
+}
+
+.intro__wrapper--text h4{
+    font-family: 'Cormorant SC', serif;
+    font-weight: 500;
+    font-size: 74px;
+
+    text-transform: uppercase;
+}
+.intro__about--text h4{
+    font-family: 'Cormorant SC', serif;
+    font-weight: 500;
+    font-size: 60px;
+
+    text-transform: uppercase;
+}
+
+.intro__wrapper--text p{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 32px;
+
+    text-align: center;
+}
+
 /* Schedule and calendar */
 
 .schedule-calendar{
@@ -376,6 +429,93 @@ td{
 
 .for__item{
     margin-bottom: 50px;
+}
+
+.price__item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.price__item--block{
+    max-width: 406px;
+    width: 100%;
+    height: 269px;
+    border-radius: 23px;
+
+    position: relative;
+}
+.price__item--inner{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.price__item--inner h5{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    text-align: center;
+    color: #fff;  
+
+    text-transform: uppercase;
+
+    @media(max-width: 1090px){
+        font-size: 28px;
+    }
+}
+
+.price__item--inner div{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    font-size: 48px;
+    color: #F38536;
+    text-align: center;
+}
+
+.price__item--img{
+    width: 100%;
+    height: 269px;
+    border-radius: 23px;
+}
+
+.overlay{
+    width: 100%;
+    /* height: 269px; */
+    background: rgba(0, 0, 0, .4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+
+    border-radius: 23px;
+}
+
+.btn-pay{
+    max-width: 486px ;
+    width: 100%;
+    height: 69px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #F38536;
+    border: none;
+    border-radius: 5px;
+
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+
+    cursor: pointer;
+    color: #fff;
+
+    margin: 45px auto;
 }
 
 /* *** Links pages *** */
