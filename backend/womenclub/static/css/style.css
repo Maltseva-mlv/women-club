@@ -83,12 +83,16 @@ a{
 }
 
 .auth__container{
-    width: 300px;
+    width: 330px;
     height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.auth__container h3{
+    margin-bottom: 20px;
 }
 
 .auth__title{

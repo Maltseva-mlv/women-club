@@ -4,13 +4,11 @@
 		<nav class="header__nav">
 			<a href="{% url 'index' %}" class="nav__link">Главная</a>
 			<a href="{% url 'show_lectures' %}" class="nav__link">Лекции</a>
-			<a href="#tariffs" class="nav__link">Тарифы</a>
+			<a href="{% url 'index' %}#tariffs" class="nav__link">Тарифы</a>
 			<a href="{% url 'manage_schedule' %}" class="nav__link">Расписание</a>
 			<a href="https://t.me/+A1JznorKyL9jNTRi" target="_blank" class="nav__link">Поддержка</a>
 			<a href="{% url 'about' %}" class="nav__link">О клубе</a>
-			{% if user.is_superuser %}
-				<a href="{% url 'profile' %}" class="nav__link">Профиль</a>
-			{% endif %}
+			
 		</nav>
 	
 		<div class="burger">

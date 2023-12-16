@@ -5,12 +5,10 @@ from .models import Schedule, Lecture
 from .forms import ScheduleForm, LectureForm
 from users.forms import UserCreationForm
 from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 
 User = get_user_model()
 
-@user_passes_test(lambda u: u.is_superuser)
 def admin_register_user(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -18,11 +16,12 @@ def admin_register_user(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
-            messages.success(request, f'Пользователь {username} добавлен успешно!')
-            return redirect('profile')  
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('/')  
     else:
         form = UserCreationForm()
-    return render(request, 'users/profile.html', {'form': form})
+    return render(request, 'registration/register.html', {'form': form})
 
 
 def profile(request):
