@@ -562,10 +562,21 @@ td:hover{
 .price__inner{
     max-width: 406px;
     width: 100%;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .ul__description li{
+    display: flex;
+    align-items: center;
     list-style-type: none;
+    margin-bottom: 12px;
+}
+
+.ul__description li > img{
+    width: 20px;
+    margin-right: 15px;
 }
 
 .price__item--block{
@@ -640,7 +651,7 @@ td:hover{
 .btn-pay{
     max-width: 486px ;
     width: 100%;
-    height: 69px;
+    height: 60px;
 
     display: flex;
     justify-content: center;
@@ -657,7 +668,7 @@ td:hover{
     cursor: pointer;
     color: #fff;
 
-    margin: 30px auto;
+    margin: auto auto 30px;
 }
 
 /* *** Main *** */
@@ -865,6 +876,70 @@ td:hover{
     margin-bottom: 20px;
     border-radius: 5px;
     padding: 5px 10px;
+}
+
+/* Payment */
+.payment{
+    max-width: 350px;
+    padding: 20px;
+
+    border: 1px solid #F38536;
+    border-radius: 5px;
+    width: 100%;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.payment__form{
+    width: 100%;
+
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin: 10px 0;
+}
+
+.validity{
+    display: flex;
+    justify-content: space-between;
+}
+
+.validity--month,
+.cvv {
+    width: 30%;
+    border-radius: 5px;
+    border: 0;
+    padding: 15px 10px;
+
+    
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.cvv{
+    width: 65%;
+}
+
+.payment--input{
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+
+    padding: 15px 10px;
+
+    background: #fff;
+
+    
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
 }
 
 @media(max-width: 1270px){
@@ -1181,5 +1256,9 @@ td:hover{
     }
     .ul--for{
         font-size: 16px;
+    }
+
+    .btn-pay{
+        font-size: 20px;
     }
 }

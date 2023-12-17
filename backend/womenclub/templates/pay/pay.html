@@ -3,27 +3,35 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
 
 	{% load static %}
     <link rel="stylesheet" href="{%  static 'css/style.css' %}">
+
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Cormorant+SC:wght@300;400;500;600&family=Mulish:wght@300;400;500;700&family=Raleway:wght@600&display=swap" rel="stylesheet">
 
-	<title>Женский клуб</title>
+	<title>Оплата тарифа </title>
 </head>
 <body>
-		<header class="header">
-			{% include 'includes/header.html' %}
-		</header>
-		<div class="container">
-			{% block content %}
+	<div class="container">
 
-			{% endblock %}
+		<div class="payment">
+			<form class="payment__form">
+				<input  placeholder="Номер карты"  class="payment--input"/>
+
+				<div class="validity">
+					<input  placeholder="ММ/ГГ" class="validity--month" />
+					<input  placeholder="CVV" class="cvv"/>
+				</div>
+				
+				<input  placeholder="IVANOV IVAN" class="payment--input"/>
+			</form>
+
+			<button class="btn-pay "> Оплатить {{ amount }}₽ </button>
 		</div>
-	
 
-	<script src=" {% static './js/script.js' %}"></script>
+	</div>
+	
 </body>
 </html>

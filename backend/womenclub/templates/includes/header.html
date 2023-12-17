@@ -6,13 +6,13 @@
 				<a href="{% url 'show_lectures' %}" class="nav__link">Лекции</a>
 				<a href="{% url 'index' %}#tariffs" class="nav__link">Тарифы</a>
 			{% else %}
-				<a href="{% url 'index' %}#tariffs" class="nav__link">Лекции</a>
+				<a href="{% url 'index' %}#lectures" class="nav__link">Лекции</a>
 				<a href="{% url 'index' %}#tariffs" class="nav__link">Тарифы</a>
 			{% endif%}
 			{% if user.is_authenticated %}
 				<a href="{% url 'manage_schedule' %}" class="nav__link">Расписание</a>
 			{% else %}
-				<a href="{% url 'index' %}#tariffs" class="nav__link">Расписание</a>
+				<a href="{% url 'index' %}#lectures" class="nav__link">Расписание</a>
 			{% endif %}
 			<a href="https://t.me/+A1JznorKyL9jNTRi" target="_blank" class="nav__link">Поддержка</a>
 			<a href="{% url 'about' %}" class="nav__link">О клубе</a>

@@ -13,6 +13,7 @@ urlpatterns = [
 	path('', views.index, name='index'),
     path('users/', include('users.urls')),
 	path('about/',  views.about, name='about'),
+	path('payment/',  views.payment, name='payment'),
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
 ]

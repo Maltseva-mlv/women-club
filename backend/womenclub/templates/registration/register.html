@@ -26,9 +26,9 @@
         <form method="post" action="{% url 'register' %}" class="profile__form">
             {% csrf_token %}
             
-            <label for="id_username">Логин:</label>
+            <label for="id_username">Имя пользователя:</label>
             {{ form.username }}
-              
+            
             <label for="id_password1">Пароль:</label>
             {{ form.password1 }}
             

@@ -14,3 +14,10 @@ def about(request):
 	
 	return render(request, 'about/main.html')
 
+def payment(request):
+	amount = request.GET.get('amount', '0')
+
+	data = {
+		'amount': amount, 
+	}
+	return render(request, 'pay/pay.html', data)

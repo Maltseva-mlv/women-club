@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="schedule-calendar">
+        <div class="schedule-calendar" id="lectures">
             <div class="schedule">
                 <p class="schedule__title"> Посмотреть расписание</p>
 
@@ -93,7 +93,40 @@
 
         <div class="prices" id="tariffs">
             
-            <div class="price__item">
+            <div class="price__item">  
+                <div class="price__inner">
+                    <div class="price__item--block">
+                        <img src=" {% static './img/rate2.png' %} " alt="" class="price__item--img">
+                        <div class="price__item--inner">
+                            <h5>Тариф standart</h5>
+                            <div>55 000₽</div>
+                        </div>
+                        <div class="overlay"></div>
+                    </div>
+                    <div class="tariff__description">
+                        <ul class="ul__description">
+                            <li >
+                                <img src="{% static './img/check-mark.png' %}" />
+                                доступ ко всем материалам на 6 месяцев </li>
+                            <li>
+                                <img src="{% static './img/check-mark.png' %}" /> 
+                                участие во всех эфирах, лекциях, ивентах, марафонах и войс-чатах с экспертами</li>
+                            <li>
+                                <img src="{% static './img/check-mark.png' %}" />
+                                первые места на все сторонние мероприятия вне рамок ЖК</li>
+                            <li>
+                                <img src="{% static './img/check-mark.png' %}" />
+                                постоянный взаимообмен и поддержка в сильном и невероятном комьюнити женщин </li>
+                            <li>
+                                <img src="{% static './img/check-mark.png' %}" />
+                                чатик ЖК + куратор, который будет отвечать на все вопросы в чате
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="{% url 'payment' %}?amount=55 000" target="_blank" class="btn-pay">Купить</a>
+                </div>
+            
                 <div class="price__inner">
                     <div class="price__item--block">
                         <img src=" {% static './img/rate1.png' %} " alt="" class="price__item--img">
@@ -107,34 +140,19 @@
 
                     <div class="tariff__description">
                         <ul class="ul__description">
-                            <li >доступ ко всем материалам на 6 месяцев </li>
-                            <li> участие во всех эфирах, лекциях, ивентах, марафонах и войс-чатах с экспертами</li>
-                            <li>первые места на все сторонние мероприятия вне рамок ЖК</li>
-                            <li>постоянный взаимообмен и поддержка в сильном и невероятном комьюнити женщин </li>
-                            <li>чатик ЖК + куратор, который будет отвечать на все вопросы в чате</li>
+                            <li>
+                                <img src="{% static './img/check-mark.png' %}" />
+                                доступ к материалам с 6 месяцев продлевается на целый год 🤍</li>
+                            <li>
+                                <img src="{% static './img/check-mark.png' %}" />
+                                + в подарок зарядка «для раскрытия женственности»
+                            </li>
                         </ul>
                     </div>
+
+                    <a href="{% url 'payment' %}?amount=100 000" target="_blank" class="btn-pay">Купить</a>
                 </div>
-                
-                <div class="price__inner">
-                    <div class="price__item--block">
-                        <img src=" {% static './img/rate2.png' %} " alt="" class="price__item--img">
-                        <div class="price__item--inner">
-                            <h5>Тариф standart</h5>
-                            <div>55 000₽</div>
-                        </div>
-                        <div class="overlay"></div>
-                    </div>
-                    <div class="tariff__description">
-                        <ul class="ul__description">
-                            <li>всё, что включено в тариф STANDART, но доступ к материалам на год </li>
-                            <li>групповые мастермаинды онлайн и в живую с основателем клуба </li>
-                            <li>женские туры и путешествия по России и зарубеж  </li>
-                            <li>+ живые мероприятия и встречи по городам</li>
-                        </ul>
-                    </div>
-                </div>
-            
+
                 <div class="price__inner">
                     <div class="price__item--block">
                         <img src=" {% static './img/rate3.png' %} " alt="" class="price__item--img">
@@ -146,16 +164,27 @@
                     </div>
                     <div class="tariff__description">
                         <ul class="ul__description">
-                            <li>доступ к материалам с 6 месяцев продлевается на целый год 🤍</li>
-                            <li>+ в подарок зарядка «для раскрытия женственности»</li>
+                            <li>
+                                <img src="{% static './img/check-mark.png' %}" />
+                                всё, что включено в тариф STANDART, но доступ к материалам на год </li>
+                            <li>
+                                <img src="{% static './img/check-mark.png' %}" />
+                                групповые мастермаинды онлайн и в живую с основателем клуба </li>
+                            <li>
+                                <img src="{% static './img/check-mark.png' %}" />
+                                женские туры и путешествия по России и зарубеж  </li>
+                            <li>
+                                <img src="{% static './img/check-mark.png' %}" />
+                                + живые мероприятия и встречи по городам
+                            </li>
                         </ul>
                         
                     </div>
+
+                    <a href="{% url 'payment' %}?amount=155 000" target="_blank" class="btn-pay">Купить</a>
                 </div>
-             
+                
             </div>
         </div>
-
-        <button class="btn-pay">Перейти к оплате</button>
 </div>
 {% endblock %}
