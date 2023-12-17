@@ -216,7 +216,7 @@ function loadEvents(selectedDate) {
                     caseItem.classList.add('case');
                     caseItem.innerHTML = `
                         <div class="case__date">${formattedDate}</div>
-						<span> — в </span>
+						<span> — </span>
 						<div class="case__time">${formattedTime}</div>
                         <div class="case__text">${event.subject}</div>
                     `;

@@ -14,8 +14,9 @@
 	<title>Женский клуб</title>
 </head>
 <body>
-	{% if user.is_authenticated %}
 		<header class="header">
+			<!-- <a href="{% url 'login' %}" class="form__auth"> Вход </a>
+			<a href="{% url 'register' %}" class="form__auth" > Регистрация </a> -->
 			{% include 'includes/header.html' %}
 		</header>
 		<div class="container">
@@ -23,52 +24,7 @@
 
 			{% endblock %}
 		</div>
-	{% else %}
 	
-	<div class="container">
-	<a href="{% url 'login' %}" class="form__auth"> Вход </a> | <a href="{% url 'register' %}" class="form__auth" > Регистрация </a>
-
-	<div class="intro">
-		<div class="intro__about">
-			<img src=" {% static './img/intro2.png' %} " alt="" class="intro-img">
-			<div class="intro__about--text">
-				<h4>Подробнее о женском клубе</h4>
-				<p>by love and feel</p>
-			</div>
-
-		</div>
-	</div>
-
-	<div class="main__info">
-		<div class="main__info--description">
-			<div class="slogan">
-				- это сильное комьюнити, где мы развиваемся и поддерживаем друг друга
-			</div>
-
-			<div class="text">
-				тут КАЖДАЯ развивается духовно, сексуально, следит в удовольствие за своим телом, становится самодостаточной и 
-				реализованной, развивает женственность, строит свой внутренний фундамент, чтобы чувствовать себя на все 100%
-			</div>
-		</div>
-
-		<div class="forWhom">
-			<button class="btn--for">Для кого женский клуб</button>
-			<ul class="ul--for">
-				<li class="for__item">для тех, кто хочет создать вокруг себя окружение сильных женщин</li>
-				<li class="for__item">для тех, кто хочет прокачать свою женственностьи сексуальность</li>
-				<li class="for__item">для тех, кто хочет научиться зарабатыватьиз легкости</li>
-			</ul>
-		</div>
-
-		<div class="links__pages">
-			<a href="" class="btn--rate btn-lecture">Посмотреть тарифы</a>
-			<a href="../index.html" class="btn--page  btn-lecture">Перейти на главную</a>
-		</div>
-	</div>
-</div>
-</div>
-</div>
-	{% endif %}
 
 	<script src=" {% static './js/script.js' %}"></script>
 </body>
